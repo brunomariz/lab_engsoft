@@ -37,4 +37,4 @@ Os Serviços realizam realmente as funcionalidades, como chamadas para o banco d
 
 Um diagrama representando as chamadas de métodos pode ser observado abaixo:
 
-![diagrama de vizualização dos routers, controllers e services](https://github.com/brunomariz/lab_engsoft/blob/develop/img/diagrama.png?raw=true)
+![diagrama de vizualização dos routers, controllers e services](https://github.com/brunomariz/lab_engsoft/blob/main/img/diagrama.png?raw=true)
