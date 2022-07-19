@@ -38,3 +38,16 @@ Os Serviços realizam realmente as funcionalidades, como chamadas para o banco d
 Um diagrama representando as chamadas de métodos pode ser observado abaixo:
 
 ![diagrama de vizualização dos routers, controllers e services](https://github.com/brunomariz/lab_engsoft/blob/develop/img/diagrama.png?raw=true)
+
+## Rodar frontend
+
+Certifique-se que você está na branch `develop` para rodar a versão mais atualizada do projeto.
+Certifique-se que você tem Node instalado no seu computador.
+
+```console
+lab_engsoft:~$ cd frontend
+lab_engsoft/backend:~$ npm install
+lab_engsoft/backend:~$ npm run dev
+```
+
+Os comandos acima irão iniciar o projeto do front em um servidor, provavelmente no endereço http://localhost:3000, se não houver algo já rodando nessa porta. De qualquer forma, o terminal informará o endereço do servidor, que pode então ser acessado entrando na URL em seu browser.
