@@ -11,6 +11,7 @@ import {
 } from "formik";
 import { object, string, ref } from "yup";
 import { loginValidation } from "../../validation/login/loginValidation";
+import { useRouter } from "next/router";
 
 interface LoginFormValues {
   username: string;
@@ -49,9 +50,12 @@ type Props = {};
 
 function Login({}: Props) {
   const initialValues: LoginFormValues = { username: "", password: "" };
-
+  const router = useRouter();
   const handleSubmit = (values: LoginFormValues) => {
     console.log(values);
+    if (true) {
+      router.push("funcionario/home");
+    }
   };
   return (
     <div className="flex flex-col justify-center items-center h-screen">
