@@ -3,7 +3,7 @@ from app.config import Sessionlocal
 from sqlalchemy.orm import Session
 from app.schemas import clienteSchema, requestCliente, responseCliente
 from app.controllers.client_controller import ClientController
-from app.clienteCRUD import clientCRUD
+from app.clienteCRUD import ClientService
 
 
 client_router = APIRouter(prefix="/client")
@@ -11,15 +11,16 @@ client_router = APIRouter(prefix="/client")
 client_controller = ClientController(service=ClientService)
 
 def get_db():
-    db = Sessionlocal
+    db = Sessionlocal()
     try:
         yield db
     finally:
-        db.close()
+        pass
+    db.close()
 
 @client_router.get("/")
 async def get_clientes():
-    return client_controller.get_clientes()
+    return client_controller.get_clientes(Sessionlocal())
 
 
 @client_router.post("/create")

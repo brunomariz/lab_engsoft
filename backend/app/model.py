@@ -6,6 +6,8 @@ class cliente(Base):
     __tablename__ = 'Cliente'
     CPF_cliente=Column(VARCHAR, primary_key=True)
     nome_cliente=Column(VARCHAR)
+    def toDict(self):
+        return {"CPF_cliente": self.CPF_cliente, "nome_cliente": self.nome_cliente}
 
 class funcionario(Base):
     __tablename__ = 'Funcionario'
@@ -41,9 +43,9 @@ class venda(Base):
     CPF_funcionario=Column(String,ForeignKey('Funcionario.CPF_funcionario', ondelete='CASCADE'), nullable=False)
     CPF_cliente=Column(String,ForeignKey('Cliente.CPF_cliente', ondelete='CASCADE'), nullable=False)
 
-    produto = relationship('Produto', backref='Venda')
-    funcionario = relationship('Funcionario', backref='Venda')
-    cliente = relationship('Cliente', backref='Venda')
+    #produto = relationship('Produto', backref='Venda')
+    #funcionario = relationship('Funcionario', backref='Venda')
+    #cliente = relationship('Cliente', backref='Venda')
 
 class compra(Base):
     __tablename__ = 'Compra'
@@ -56,9 +58,9 @@ class compra(Base):
     CPF_funcionario=Column(String,ForeignKey('Funcionario.CPF_funcionario', ondelete='CASCADE'), nullable=False)
     CPF_cliente=Column(String,ForeignKey('Cliente.CPF_cliente', ondelete='CASCADE'), nullable=False)
 
-    produto = relationship('Produto', backref='Compra')
-    funcionario = relationship('Funcionario', backref='Compra')
-    cliente = relationship('Cliente', backref='Compra')
+    #produto = relationship('Produto', backref='Compra')
+    #funcionario = relationship('Funcionario', backref='Compra')
+    #cliente = relationship('Cliente', backref='Compra')
 
 class salario(Base):
     __tablename__ = 'Salario'
@@ -70,7 +72,7 @@ class salario(Base):
 
     CPF_funcionario=Column(String,ForeignKey('Funcionario.CPF_funcionario', ondelete='CASCADE'), nullable=False)
 
-    funcionario = relationship('Funcionario', backref='Salario')
+    #funcionario = relationship('Funcionario', backref='Salario')
 
 
 
