@@ -26,4 +26,4 @@ async def get_clientes():
 async def get_client_additional_method(request:requestCliente, db:Session=Depends(get_db)):
     client_controller.create_cliente(db, request)
     
-    # return responseCliente(code=200, status='ok', message="Cliente criado com sucesso")
+    return responseCliente(code=200, status='ok', message="Cliente criado com sucesso")

@@ -1,10 +1,13 @@
 from sqlalchemy.orm import Session
 from model import cliente
 from schemas import clienteSchema
+import pandas as pd
 
 def getClientes(db:Session, skip:int=0, limit:int=100):
     resultado=db.query(cliente).offset(skip).limit(limit).all()
-    return {col.name: getattr(resultado, col.name)for col in resultado.__table__.columns}
+    # pd.Dataframe(resultado.__dict__)
+    # {col.name: getattr(resultado, col.name)for col in resultado.__table__.columns}
+    return resultado
 
 def getClienteEspecifico(db:Session, CPF_cliente:str):
     return db.query(cliente).filter(cliente.CPF_cliente == CPF_cliente).first()
