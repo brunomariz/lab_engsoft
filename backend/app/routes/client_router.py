@@ -11,7 +11,7 @@ client_router = APIRouter(prefix="/client")
 client_controller = ClientController(service=ClientService)
 
 def get_db():
-    db = Sessionlocal
+    db = Sessionlocal()
     try:
         yield db
     finally:
@@ -21,18 +21,21 @@ def get_db():
 async def get_clientes():
     return client_controller.get_clientes()
 
+@client_router.get("/cliente")
+async def search_clientes(request:requestCliente, db:Session=Depends(get_db())):
+    return client_controller.get_clienteEspecifico(request)
 
 @client_router.post("/create")
-async def create_cliente(request:requestCliente, db:Session=Depends(get_db)):
+async def create_cliente(request:requestCliente, db:Session=Depends(get_db())):
     return client_controller.create_cliente(db, request)
 
-# @client_router.post("/remove")
-# async def create_cliente(request:requestCliente, db:Session=Depends(get_db)):
-#     return client_controller.remove_cliente(db, request)
+@client_router.post("/remove")
+async def create_cliente(request:requestCliente, db:Session=Depends(get_db())):
+    return client_controller.remove_cliente(db, request)
 
-# @client_router.post("/create")
-# async def create_cliente(request:requestCliente, db:Session=Depends(get_db)):
-#     return client_controller.create_cliente(db, request)
+@client_router.post("/update")
+async def update_cliente(request:requestCliente, db:Session=Depends(get_db())):
+    return client_controller.update_cliente(db, request)
 
 # @client_router.post("/create")
 # async def create_cliente(request:requestCliente, db:Session=Depends(get_db)):
