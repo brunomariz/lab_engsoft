@@ -16,6 +16,9 @@ class funcionario(Base):
     eh_gerente=Column(Boolean)
     comissao_venda=Column(Numeric)
     login_usuario=Column(VARCHAR)
+    
+    # def toDict(self):
+    #     return {"CPF_funcionario: ": self.CPF_funcionario, "nome_funcionario:": self.nome_funcionario, "salario_fixo:": self.salario_fixo, "data_admissao:": self.data_admissao, ""}
 
 class fornecedor(Base):
     __tablename__ = 'Fornecedor'
