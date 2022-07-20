@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from app.routes.example_router import example_router
 import model
+from config import engine
+
 app = FastAPI()
 
 model.Base.metadata.create_all(bind=engine)
