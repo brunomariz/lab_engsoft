@@ -20,3 +20,20 @@ class responseCliente(GenericModel, Generic[T]):
     status: str
     message: str
     result: Optional[T]
+
+
+# class clienteSchema(BaseModel):
+#     CPF_cliente: str=None
+#     nome_cliente: Optional[str]=None
+
+#     class config:
+#         orm_mode = True
+
+# class requestCliente(BaseModel):
+#     parameter: clienteSchema = Field(...)
+
+# class responseCliente(GenericModel, Generic[T]):
+#     code: str
+#     status: str
+#     message: str
+#     result: Optional[T]
