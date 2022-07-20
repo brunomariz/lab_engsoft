@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String, VARCHAR, Date, Numeric, ForeignKey, ColumnDefault, Boolean
-from config import Base
+from app.config import Base
 from sqlalchemy.orm import relationship
 
 class cliente(Base):
@@ -18,7 +18,7 @@ class produto(Base):
     nome_produto=Column(VARCHAR)
     quantidade_produto=Column(Integer, default=0)
     em_promocao=Column(Boolean)
-    
+
 
 class venda(Base):
     __tablename__ = 'Venda'
