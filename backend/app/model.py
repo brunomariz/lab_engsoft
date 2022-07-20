@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String, VARCHAR
-from config import Base
+from app.config import Base
 
 class cliente(Base):
     __tablename__ = 'Cliente'
