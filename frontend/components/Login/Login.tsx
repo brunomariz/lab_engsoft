@@ -54,7 +54,7 @@ function Login({}: Props) {
   const handleSubmit = (values: LoginFormValues) => {
     console.log(values);
     if (true) {
-      router.push("funcionario/home");
+      router.push("home");
     }
   };
   return (

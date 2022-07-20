@@ -8,15 +8,17 @@ type Props = {
 
 function SidebarLayout({ children, title }: Props) {
   return (
-    <div>
+    <>
       <Sidebar></Sidebar>
-      <div className="pl-64">
-        <div className="w-full bg-white">
+      <div className="pl-64 bg-white">
+        <div className="w-full bg-gray-100">
           <h1 className="p-2 pl-4">{title}</h1>
         </div>
-        <div className="bg-gray-200 h-full min-h-screen">{children}</div>
+        <div className="bg-gray-100 h-full min-h-screen m-8 p-5">
+          {children}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

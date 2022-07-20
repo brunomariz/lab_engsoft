@@ -21,9 +21,9 @@ function Sidebar({}: Props) {
         route="/home"
       ></SidebarItem>
       <SidebarItem
-        icon={<FaMoneyBill size={30} />}
-        label="Finanças"
-        route="/financas"
+        icon={<FaCashRegister size={30} />}
+        label="Vendas"
+        route="/vendas"
       ></SidebarItem>
       <SidebarItem
         icon={<FaBarcode size={30} />}
@@ -31,14 +31,14 @@ function Sidebar({}: Props) {
         route="/produtos"
       ></SidebarItem>
       <SidebarItem
-        icon={<FaCashRegister size={30} />}
-        label="Vendas"
-        route="/vendas"
-      ></SidebarItem>
-      <SidebarItem
         icon={<BsFillPersonFill size={30} />}
         label="Vendedores Ativos"
         route="/vendedores"
+      ></SidebarItem>
+      <SidebarItem
+        icon={<FaMoneyBill size={30} />}
+        label="Clientes"
+        route="/clientes"
       ></SidebarItem>
     </div>
   );

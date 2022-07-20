@@ -10,5 +10,13 @@ body {
 }
 
 h1 {
-  @apply text-2xl font-semibold text-gray-900;
+  @apply text-3xl font-semibold text-gray-900 leading-10;
+}
+
+h2 {
+  @apply text-2xl text-gray-800 leading-8;
+}
+
+h3 {
+  @apply text-xl text-gray-700 leading-6;
 }
