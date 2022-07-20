@@ -7,6 +7,23 @@ class cliente(Base):
     CPF_cliente=Column(VARCHAR, primary_key=True)
     nome_cliente=Column(VARCHAR)
 
+class funcionario(Base):
+    __tablename__ = 'Funcionario'
+    CPF_funcionario=Column(VARCHAR, primary_key=True)
+    nome_funcionario=Column(VARCHAR)
+    salario_fixo=Column(Numeric)
+    data_admissao=Column(Date)
+    eh_gerente=Column(Boolean,default=False)
+    comissao_venda=Column(Numeric, default=0.1)
+
+    login_usuario=Column(VARCHAR,ForeignKey('Usuario.login_usuario', ondelete='CASCADE'))
+
+class usuario(Base):
+    __tablename__ = 'Usuario'
+    login=Column(VARCHAR, primary_key=True)
+    senha=Column(VARCHAR)
+    eh_admin=Column(Boolean, default=False)
+
 class fornecedor(Base):
     __tablename__ = 'Fornecedor'
     CNPJ_fornecedor=Column(VARCHAR, primary_key=True)
@@ -17,7 +34,8 @@ class produto(Base):
     codigo_produto=Column(Numeric, primary_key=True)
     nome_produto=Column(VARCHAR)
     quantidade_produto=Column(Integer, default=0)
-    em_promocao=Column(Boolean)
+    em_promocao=Column(Boolean,default=False)
+    preco_venda=Column(Numeric)
 
 
 class venda(Base):

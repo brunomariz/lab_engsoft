@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from app.routes.example_router import example_router
-import model
-from config import engine
+import app.model as model
+from app.config import engine
 
 app = FastAPI()
 
