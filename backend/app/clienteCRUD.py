@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from model import cliente
-from schemas import clienteSchema
+from app.model import cliente
+from app.schemas import clienteSchema
 import pandas as pd
 
 def getClientes(db:Session, skip:int=0, limit:int=100):

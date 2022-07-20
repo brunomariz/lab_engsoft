@@ -1,8 +1,8 @@
 from app.controllers._base import BaseController
 from app.services.cliente_service import ClientService
 from sqlalchemy.orm import Session
-from schemas import clienteSchema, requestCliente, responseCliente
-import clienteCRUD
+from app.schemas import clienteSchema, requestCliente, responseCliente
+import app.clienteCRUD
 
 class ClientController(BaseController):
     def __init__(self, service=...) -> None:
