@@ -11,7 +11,7 @@ function Table({ items, title, columnTitles }: Props) {
     <>
       <h2 className="py-3">{title}</h2>
       <div
-        className={`grid font-semibold text-slate-800 bg-gray-400 p-1`}
+        className={`grid font-semibold text-slate-800 bg-gray-400 p-1 items-center`}
         style={{
           gridTemplateColumns: `repeat(${columnTitles.length}, 1fr)`,
         }}

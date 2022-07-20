@@ -1,10 +1,10 @@
 import React from "react";
-import SidebarLayout from "../components/SidebarLayout/SidebarLayout";
-import Table from "../components/Table/Table";
+import SidebarLayout from "../../components/SidebarLayout/SidebarLayout";
+import Table from "../../components/Table/Table";
 
 type Props = {};
 
-function Vendas({}: Props) {
+function lista({}: Props) {
   const mockSales = [
     {
       id: 1,
@@ -457,7 +457,6 @@ function Vendas({}: Props) {
       cpf_cliente: "0749515112",
     },
   ];
-
   return (
     <SidebarLayout title="Vendas">
       <Table
@@ -477,4 +476,4 @@ function Vendas({}: Props) {
   );
 }
 
-export default Vendas;
+export default lista;

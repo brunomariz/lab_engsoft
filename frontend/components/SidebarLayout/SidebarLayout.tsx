@@ -14,7 +14,7 @@ function SidebarLayout({ children, title }: Props) {
         <div className="w-full bg-gray-100">
           <h1 className="p-2 pl-4">{title}</h1>
         </div>
-        <div className="bg-gray-100 h-full min-h-screen m-8 p-5">
+        <div className="bg-gray-100 rounded-2xl h-full min-h-screen m-8 p-5">
           {children}
         </div>
       </div>
