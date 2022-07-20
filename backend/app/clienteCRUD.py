@@ -29,14 +29,14 @@ class ClientService(BaseService):
         db.refresh(_cliente)
         return pd.from_sql(_cliente).to_dict('records')
 
-    def remove_cliente(self, db:Session, CPF_cliente:str):
-        _cliente = getClienteEspecifico(db,CPF_cliente)
+    def remove_cliente(self,db:Session, CPF_cliente:str):
+        _cliente = self.getClienteEspecifico(db,CPF_cliente)
         db.delete(_cliente)
         db.commit()
         return pd.from_sql(_cliente).to_dict('records')
 
-    def update_cliente(self, db:Session, CPF_cliente:str, nome_cliente: str):
-        _cliente= getClienteEspecifico(db, CPF_cliente)
+    def update_cliente(self,db:Session, CPF_cliente:str, nome_cliente: str):
+        _cliente= self.getClienteEspecifico(db, CPF_cliente)
         _cliente.nome_cliente = nome_cliente
         db.commit()
         db.refresh(_cliente)
