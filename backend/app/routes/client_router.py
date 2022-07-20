@@ -1,9 +1,9 @@
 from fastapi import APIRouter, HTTPException, Path, Depends
-from config import Sessionlocal
+from app.config import Sessionlocal
 from sqlalchemy.orm import Session
-from schemas import clienteSchema, requestCliente, responseCliente
+from app.schemas import clienteSchema, requestCliente, responseCliente
 from app.controllers.client_controller import ClientController
-from clienteCRUD import ClientService
+from app.clienteCRUD import ClientService
 
 
 client_router = APIRouter(prefix="/client")
@@ -15,11 +15,12 @@ def get_db():
     try:
         yield db
     finally:
-        db.close()
+        pass
+    db.close()
 
 @client_router.get("/")
 async def get_clientes():
-    return client_controller.get_clientes()
+    return client_controller.get_clientes(Sessionlocal())
 
 @client_router.get("/cliente")
 async def search_clientes(request:requestCliente, db:Session=Depends(get_db())):

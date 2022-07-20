@@ -6,5 +6,8 @@ POSTGRE_URL = "postgresql://iskndzepfsryoa:e8395b839a79f560f56c6e9ab3e6883b74284
 
 engine = create_engine(POSTGRE_URL)
 
+#conn = engine.connect()
+
 Sessionlocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
 Base=declarative_base()
