@@ -1,4 +1,6 @@
 from app.services._base import BaseService
+from app.config import Sessionlocal
+from app.model import cliente
 
 
 class ClientService(BaseService):
@@ -6,6 +8,7 @@ class ClientService(BaseService):
         super().__init__()
 
     def list_clientes(self):
-        return {"method": "example additional method"}
+        return Sessionlocal.query(cliente)
+        #return {"method": "example additional method"}
 
 

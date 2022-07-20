@@ -11,18 +11,11 @@ class funcionario(Base):
     __tablename__ = 'Funcionario'
     CPF_funcionario=Column(VARCHAR, primary_key=True)
     nome_funcionario=Column(VARCHAR)
-    salario_fixo=Column(Numeric)
+    salario_fixo=Column(Integer)
     data_admissao=Column(Date)
-    eh_gerente=Column(Boolean,default=False)
-    comissao_venda=Column(Numeric, default=0.1)
-
-    login_usuario=Column(VARCHAR,ForeignKey('Usuario.login_usuario', ondelete='CASCADE'))
-
-class usuario(Base):
-    __tablename__ = 'Usuario'
-    login=Column(VARCHAR, primary_key=True)
-    senha=Column(VARCHAR)
-    eh_admin=Column(Boolean, default=False)
+    eh_gerente=Column(Boolean)
+    comissao_venda=Column(Numeric)
+    login_usuario=Column(VARCHAR)
 
 class fornecedor(Base):
     __tablename__ = 'Fornecedor'
@@ -31,12 +24,11 @@ class fornecedor(Base):
 
 class produto(Base):
     __tablename__ = 'Produto'
-    codigo_produto=Column(Numeric, primary_key=True)
+    codigo_produto=Column(Integer, primary_key=True)
     nome_produto=Column(VARCHAR)
     quantidade_produto=Column(Integer, default=0)
     em_promocao=Column(Boolean,default=False)
     preco_venda=Column(Numeric)
-
 
 class venda(Base):
     __tablename__ = 'Venda'
@@ -45,7 +37,7 @@ class venda(Base):
     valor_por_item=Column(Numeric)
     quantidade_venda=Column(Integer,default=1)
 
-    codigo_produto=Column(Numeric,ForeignKey('Produto.codigo_produto', ondelete='CASCADE'), nullable=False)
+    codigo_produto=Column(Integer,ForeignKey('Produto.codigo_produto', ondelete='CASCADE'), nullable=False)
     CPF_funcionario=Column(String,ForeignKey('Funcionario.CPF_funcionario', ondelete='CASCADE'), nullable=False)
     CPF_cliente=Column(String,ForeignKey('Cliente.CPF_cliente', ondelete='CASCADE'), nullable=False)
 
@@ -60,7 +52,7 @@ class compra(Base):
     valor_por_item=Column(Numeric)
     quantidade_compra=Column(Integer, default=1)
 
-    codigo_produto=Column(Numeric,ForeignKey('Produto.codigo_produto', ondelete='CASCADE'), nullable=False)
+    codigo_produto=Column(Integer,ForeignKey('Produto.codigo_produto', ondelete='CASCADE'), nullable=False)
     CPF_funcionario=Column(String,ForeignKey('Funcionario.CPF_funcionario', ondelete='CASCADE'), nullable=False)
     CPF_cliente=Column(String,ForeignKey('Cliente.CPF_cliente', ondelete='CASCADE'), nullable=False)
 
