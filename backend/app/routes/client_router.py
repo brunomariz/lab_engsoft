@@ -8,7 +8,7 @@ from app.clienteCRUD import clientCRUD
 
 client_router = APIRouter(prefix="/client")
 
-client_controller = ClientController(service=clienteCRUD)
+client_controller = ClientController(service=ClientService)
 
 def get_db():
     db = Sessionlocal
@@ -23,7 +23,17 @@ async def get_clientes():
 
 
 @client_router.post("/create")
-async def get_client_additional_method(request:requestCliente, db:Session=Depends(get_db)):
-    client_controller.create_cliente(db, request)
-    
-    return responseCliente(code=200, status='ok', message="Cliente criado com sucesso")
+async def create_cliente(request:requestCliente, db:Session=Depends(get_db)):
+    return client_controller.create_cliente(db, request)
+
+# @client_router.post("/remove")
+# async def create_cliente(request:requestCliente, db:Session=Depends(get_db)):
+#     return client_controller.remove_cliente(db, request)
+
+# @client_router.post("/create")
+# async def create_cliente(request:requestCliente, db:Session=Depends(get_db)):
+#     return client_controller.create_cliente(db, request)
+
+# @client_router.post("/create")
+# async def create_cliente(request:requestCliente, db:Session=Depends(get_db)):
+#     return client_controller.create_cliente(db, request)

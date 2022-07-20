@@ -12,3 +12,7 @@ class ClientController(BaseController):
         return self.service.list_clientes()
     def create_cliente(self,db:Session, requestCliente):
         return self.service.create_cliente(db, requestCliente.parameter)
+    # def create_cliente(self,db:Session, requestCliente):
+    #     return self.service.create_cliente(db, requestCliente.parameter)
+    # def create_cliente(self,db:Session, requestCliente):
+    #     return self.service.create_cliente(db, requestCliente.parameter)

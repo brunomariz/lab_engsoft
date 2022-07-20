@@ -2,31 +2,45 @@ from sqlalchemy.orm import Session
 from app.model import cliente
 from app.schemas import clienteSchema
 import pandas as pd
+from app.services._base import BaseService
+from app.config import Sessionlocal
+from app.model import cliente
 
-def getClientes(db:Session, skip:int=0, limit:int=100):
-    resultado=db.query(cliente).offset(skip).limit(limit).all()
-    # pd.Dataframe(resultado.__dict__)
-    # {col.name: getattr(resultado, col.name)for col in resultado.__table__.columns}
-    return resultado
 
-def getClienteEspecifico(db:Session, CPF_cliente:str):
-    return db.query(cliente).filter(cliente.CPF_cliente == CPF_cliente).first()
 
-def create_cliente(db:Session, Cliente:clienteSchema):
-    _cliente = cliente(nome_cliente=Cliente.nome_cliente)
-    db.add(_cliente)
-    db.commit()
-    db.refresh(_cliente)
-    return _cliente
+class ClientService(BaseService):
+    def __init__(self) -> None:
+        super().__init__()
 
-def remove_cliente(db:Session, CPF_cliente:str):
-    _cliente = getClienteEspecifico(db,CPF_cliente)
-    db.delete(_cliente)
-    db.commit()
+    def list_clientes(self):
+        return Sessionlocal.query(cliente)
+        #return {"method": "example additional method"}
 
-def update_cliente(db:Session, CPF_cliente:str, nome_cliente: str):
-    _cliente= getClienteEspecifico(db, CPF_cliente)
-    _cliente.nome_cliente = nome_cliente
-    db.commit()
-    db.refresh(_cliente)
-    return _cliente
+    def getClientes(db:Session, skip:int=0, limit:int=100):
+        resultado=db.query(cliente).offset(skip).limit(limit).all()
+        
+        return pd.from_sql(resultado).to_dict('records')
+
+    def getClienteEspecifico(db:Session, CPF_cliente:str):
+        resultado = db.query(cliente).filter(cliente.CPF_cliente == CPF_cliente).first()
+        return pd.from_sql(resultado).to_dict('records')
+
+    def create_cliente(db:Session, Cliente:clienteSchema):
+        _cliente = cliente(nome_cliente=Cliente.nome_cliente)
+        db.add(_cliente)
+        db.commit()
+        db.refresh(_cliente)
+        return pd.from_sql(_cliente).to_dict('records')
+
+    def remove_cliente(db:Session, CPF_cliente:str):
+        _cliente = getClienteEspecifico(db,CPF_cliente)
+        db.delete(_cliente)
+        db.commit()
+        return pd.from_sql(_cliente).to_dict('records')
+
+    def update_cliente(db:Session, CPF_cliente:str, nome_cliente: str):
+        _cliente= getClienteEspecifico(db, CPF_cliente)
+        _cliente.nome_cliente = nome_cliente
+        db.commit()
+        db.refresh(_cliente)
+        return pd.from_sql(_cliente).to_dict('records')
