@@ -9,7 +9,7 @@ import {
   FaHome,
   FaBoxes,
 } from "react-icons/fa";
-import { BsFillPersonFill } from "react-icons/bs";
+import { BsFillPeopleFill, BsFillPersonFill } from "react-icons/bs";
 
 type Props = {};
 
@@ -45,6 +45,11 @@ function Sidebar({}: Props) {
         icon={<FaMoneyBill size={30} />}
         label="Clientes"
         route="/clientes"
+      ></SidebarItem>
+      <SidebarItem
+        icon={<BsFillPeopleFill size={30} />}
+        label="Fornecedores"
+        route="/fornecedores"
       ></SidebarItem>
     </div>
   );
