@@ -7,6 +7,7 @@ import {
   FaAcquisitionsIncorporated,
   FaCashRegister,
   FaHome,
+  FaBoxes,
 } from "react-icons/fa";
 import { BsFillPersonFill } from "react-icons/bs";
 
@@ -24,6 +25,11 @@ function Sidebar({}: Props) {
         icon={<FaCashRegister size={30} />}
         label="Vendas"
         route="/vendas"
+      ></SidebarItem>
+      <SidebarItem
+        icon={<FaBoxes size={30} />}
+        label="Compras"
+        route="/compras"
       ></SidebarItem>
       <SidebarItem
         icon={<FaBarcode size={30} />}

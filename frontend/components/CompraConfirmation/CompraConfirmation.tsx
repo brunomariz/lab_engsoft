@@ -2,31 +2,31 @@ import React, { useState } from "react";
 import { mockCostumers } from "../../constants/mock/mockCostumers";
 import { mockEmployees } from "../../constants/mock/mockEmployees";
 import { mockProducts } from "../../constants/mock/mockProdutos";
-import { mockProviders } from "../../constants/mock/mockProviders";
+import { ICompraValidation } from "../../validation/compra/compraValidation";
 import { IVendaValidation } from "../../validation/venda/vendaValidation";
 import SidebarLayout from "../SidebarLayout/SidebarLayout";
 import Table from "../Table/Table";
 
 type Props = {
-  values: IVendaValidation;
+  values: ICompraValidation;
   handleConfirm: () => void;
   handleCancel: () => void;
 };
 
-const VendaConfirmation = ({ values, handleConfirm, handleCancel }: Props) => {
+const CompraConfirmation = ({ values, handleConfirm, handleCancel }: Props) => {
   let totalPrice = 0;
   return (
     <>
       <div className="flex space-x-3 mb-3">
         <div>
-          <h3 className="my-2">Cliente</h3>
+          <h3 className="my-2">Fornecedor</h3>
           <div className="">
             {
-              mockProviders.find(
-                (provider) =>
-                  provider.cnpj_fornecedor.toString() ===
-                  values.cpf_cliente.toString()
-              )?.nome_fornecedor
+              mockCostumers.find(
+                (costumer) =>
+                  costumer.cpf_cliente.toString() ===
+                  values.cnpj_fornecedor.toString()
+              )?.nome
             }
           </div>
         </div>
@@ -91,4 +91,4 @@ const VendaConfirmation = ({ values, handleConfirm, handleCancel }: Props) => {
   );
 };
 
-export default VendaConfirmation;
+export default CompraConfirmation;

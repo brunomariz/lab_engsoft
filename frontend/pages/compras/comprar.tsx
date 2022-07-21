@@ -1,39 +1,39 @@
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import VendaForm from "../../components/Forms/VendaForm/VendaForm";
+import CompraConfirmation from "../../components/CompraConfirmation/CompraConfirmation";
+import CompraForm from "../../components/Forms/CompraForm/CompraForm";
 import SidebarLayout from "../../components/SidebarLayout/SidebarLayout";
-import VendaConfirmation from "../../components/VendaConfirmation/VendaConfirmation";
-import { IVendaValidation } from "../../validation/venda/vendaValidation";
+import { ICompraValidation } from "../../validation/compra/compraValidation";
 
 type Props = {};
 
 function Vender({}: Props) {
   const [step, setStep] = useState(0);
-  const [values, setValues] = useState<IVendaValidation>();
+  const [values, setValues] = useState<ICompraValidation>();
   const router = useRouter();
   return (
-    <SidebarLayout title="Realizar Venda">
+    <SidebarLayout title="Realizar Compra">
       {step == 0 ? (
         <>
-          <h2 className="">Informações da Venda</h2>
-          <VendaForm setStep={setStep} setValues={setValues}></VendaForm>
+          <h2 className="">Informações da Compra</h2>
+          <CompraForm setStep={setStep} setValues={setValues}></CompraForm>
         </>
       ) : (
         <>
           <h2 className="">Confirmar Venda</h2>
-          <VendaConfirmation
+          <CompraConfirmation
             values={
-              values || { cpf_cliente: "", cpf_vendedor: "", produtos: [] }
+              values || { cnpj_fornecedor: "", cpf_vendedor: "", produtos: [] }
             }
             handleConfirm={() => {
               console.log(values);
               router.push("/home");
             }}
             handleCancel={() => {
-              console.log("venda cancelada");
+              console.log("compra cancelada");
               router.push("/home");
             }}
-          ></VendaConfirmation>
+          ></CompraConfirmation>
         </>
       )}
     </SidebarLayout>
