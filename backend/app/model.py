@@ -103,7 +103,7 @@ class salario(Base):
     quantidade_salario=Column(Integer, default=1)
     banco_depositado=Column(String)
 
-    CPF_funcionario=Column(String,ForeignKey('Funcionario.CPF_funcionario''CASCADE'), nullable=False)
+    CPF_funcionario=Column(String,ForeignKey('Funcionario.CPF_funcionario'), nullable=False)
 
     #funcionario = relationship('Funcionario', backref='Salario')
 

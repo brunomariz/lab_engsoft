@@ -36,7 +36,3 @@ async def remove_venda(request:requestVenda):
 @venda_router.post("/update")
 async def update_venda(request:requestVenda):
     return venda_controller.update_venda(Sessionlocal(), request)
-
-# @venda_router.post("/create")
-# async def create_vendae(request:requestvendaeget_db)):
-#     return venda_controller.create_vendae(db, request)
