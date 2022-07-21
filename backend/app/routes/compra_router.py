@@ -32,7 +32,7 @@ async def get_compra_by_codigo(data : date):
     return compra_controller.getCompras_byData(Sessionlocal(), data)
 
 @compra_router.post("/create")
-async def criar_compra(compra : compraSchema):
+async def criar_compra(compra : requestCompra):
     return 200 if compra_controller.createCompra(Sessionlocal(), compra) else 400
 
 @compra_router.delete("/delete")

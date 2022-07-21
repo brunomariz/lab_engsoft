@@ -138,20 +138,22 @@ class compraSchema(BaseModel):
     valor_por_item:float
     quantidade_compra: int=1
 
-    codigo_produto: int
+    codigos_produtos: int
     CPF_funcionario: str
     CNPJ_fornecedor: str
     
     class config:
         orm_mode = True
 
-class requestCompra(BaseModel):
-    id_compra: int
-    data_compra: date
-    valor_por_item:float
-    quantidade_compra: int=1
+class compra_venda_ProdutoSchema(BaseModel):
 
-    codigo_produto: int
+    codigo_produto : int
+    quantidade : int
+    valor : float
+
+class requestCompra(BaseModel):
+
+    produtos: List[ compra_venda_ProdutoSchema  ]
     CPF_funcionario: str
     CNPJ_fornecedor: str
 
@@ -161,7 +163,7 @@ def responseCompra(code: str, status: str, message: str):
 class vendaSchema(BaseModel):
     id_venda: int
     data_venda: date
-    valor_por_item:float
+    valor_por_item: float
     quantidade_venda: int=1
 
     codigo_produto: int

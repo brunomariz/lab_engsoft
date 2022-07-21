@@ -71,14 +71,13 @@ class venda(Base):
 
 class compra(Base):
     __tablename__ = 'Compra'
-    id_compra=Column(Integer, primary_key=True)
-    data_compra=Column(Date)
+    data_compra=Column(Date, primary_key=True)
     valor_por_item=Column(Numeric)
     quantidade_compra=Column(Integer, default=1)
 
     codigo_produto=Column(Integer,ForeignKey('Produto.codigo_produto', ondelete='CASCADE'), nullable=False)
-    CPF_funcionario=Column(String,ForeignKey('Funcionario.CPF_funcionario', ondelete='CASCADE'), nullable=False)
-    CNPJ_fornecedor=Column(String,ForeignKey('Fornecedor.CNPJ_fornecedor', ondelete='CASCADE'), nullable=False)
+    CPF_funcionario=Column(String,ForeignKey('Funcionario.CPF_funcionario', ondelete='CASCADE'),primary_key=True, nullable=False)
+    CNPJ_fornecedor=Column(String,ForeignKey('Fornecedor.CNPJ_fornecedor', ondelete='CASCADE'),primary_key=True, nullable=False)
 
     def toDict(self):
         return _toDict(self)
