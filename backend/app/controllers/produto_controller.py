@@ -28,8 +28,8 @@ class ProdutoController(BaseController):
     def remove_produto(self,db:Session, codigo: int):
         return self.service.removeProduto(db, codigo)
 
-    def setQuantidadeProduto(self, db:Session, request: requestQuantidadeProduto):
-        return self.service.setQuantidadeProduto(db, request.codigo, request.quantidade)
+    def addQuantidadeProduto(self, db:Session, request: requestQuantidadeProduto):
+        return self.service.addQuantidadeProduto(db, request.codigo, request.quantidade)
 
     def setPromocaoProduto(self, db:Session, request: requestPromocaoProduto):
         return self.service.setEmPromocao(db, request.codigo, request.emPromocao)

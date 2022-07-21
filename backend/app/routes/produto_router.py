@@ -35,9 +35,9 @@ async def criar_produto(produto : requestProduto):
 async def delete_produto(codigo: int):
     return 200 if produto_controller.remove_produto(Sessionlocal(), codigo) else 400
 
-@produto_router.patch("/updateQuantidade/")
+@produto_router.patch("/addQuantidade/")
 async def setQuantidade(request : requestQuantidadeProduto):
-    return 200 if produto_controller.setQuantidadeProduto(Sessionlocal(), request) else 400
+    return 200 if produto_controller.addQuantidadeProduto(Sessionlocal(), request) else 400
 
 @produto_router.patch("/updatePromocao/")
 async def setPromocao(request : requestQuantidadeProduto):

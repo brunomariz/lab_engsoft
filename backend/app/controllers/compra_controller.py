@@ -31,7 +31,7 @@ class CompraController(BaseController):
     def createCompra(self, db: Session, request: compraSchema):
         produto_service = ProdutoService()
         try:
-            ok = produto_service.setQuantidadeProduto(db, request.codigo_produto,
+            ok = produto_service.addQuantidadeProduto(db, request.codigo_produto,
                                                     abs(request.quantidade_compra))
             if not ok:
                 return False
