@@ -11,7 +11,7 @@ class cliente(Base):
     def toDict(self):
         return {"CPF_cliente": self.CPF_cliente, "nome_cliente": self.nome_cliente}
 
-    def to_dict(self):
+    def toDict(self):
         return {column.name: self[column.name] for column in inspect(self).c}
 
 class funcionario(Base):
@@ -27,14 +27,14 @@ class funcionario(Base):
     # def toDict(self):
     #     return {"CPF_funcionario: ": self.CPF_funcionario, "nome_funcionario:": self.nome_funcionario, "salario_fixo:": self.salario_fixo, "data_admissao:": self.data_admissao, ""}
 
-    def to_dict(self):
+    def toDict(self):
         return {column.name: self[column.name] for column in inspect(self).c}
 
 class fornecedor(Base):
     __tablename__ = 'Fornecedor'
     CNPJ_fornecedor=Column(VARCHAR, primary_key=True)
     nome_fornecedor=Column(VARCHAR)
-    def to_dict(self):
+    def toDict(self):
         return {column.name: self[column.name] for column in inspect(self).c}
 
 class produto(Base):
@@ -45,7 +45,7 @@ class produto(Base):
     em_promocao=Column(Boolean,default=False)
     preco_venda=Column(Numeric)
 
-    def to_dict(self):
+    def toDict(self):
         return {column.name: self[column.name] for column in inspect(self).c}
 
 class venda(Base):
@@ -63,7 +63,7 @@ class venda(Base):
     #funcionario = relationship('Funcionario', backref='Venda')
     #cliente = relationship('Cliente', backref='Venda')
 
-    def to_dict(self):
+    def toDict(self):
         return {column.name: self[column.name] for column in inspect(self).c}
 
 class compra(Base):
@@ -81,7 +81,7 @@ class compra(Base):
     #funcionario = relationship('Funcionario', backref='Compra')
     #cliente = relationship('Cliente', backref='Compra')
 
-    def to_dict(self):
+    def toDict(self):
         return {column.name: self[column.name] for column in inspect(self).c}
 
 class salario(Base):
@@ -96,7 +96,7 @@ class salario(Base):
 
     #funcionario = relationship('Funcionario', backref='Salario')
 
-    def to_dict(self):
+    def toDict(self):
         return {column.name: self[column.name] for column in inspect(self).c}
 
 
