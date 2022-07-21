@@ -1,8 +1,10 @@
 from fastapi import FastAPI
 from app.routes.example_router import example_router
 from app.routes.client_router import client_router
+from app.routes.produto_router import produto_router
 from app.config import engine
 import app.model as model
+import uvicorn
 
 app = FastAPI()
 
@@ -10,6 +12,7 @@ model.Base.metadata.create_all(bind=engine)
 
 app.include_router(example_router)
 app.include_router(client_router)
+app.include_router(produto_router)
 
 
 @app.get("/")
@@ -20,3 +23,4 @@ def read_root():
 @app.get("/hello")
 def hello():
     return {"message": "hello, world!"}
+

@@ -2,17 +2,27 @@ from sqlalchemy import Column, Integer, String, VARCHAR, Date, Numeric, ForeignK
 from app.config import Base
 from sqlalchemy.orm import relationship
 from sqlalchemy.inspection import inspect
+from datetime import date
+
+def _toDict(obj):
+    aux = obj.__dict__
+    delete = []
+    for key in aux.keys():
+        val = aux[key]
+        if not isinstance(val, (str, int, bool, float, date)):
+            delete.append(key)
+    for key in delete:
+        del aux[key]
+    return aux
 
 
 class cliente(Base):
     __tablename__ = 'Cliente'
     CPF_cliente=Column(VARCHAR, primary_key=True)
     nome_cliente=Column(VARCHAR)
-    def toDict(self):
-        return {"CPF_cliente": self.CPF_cliente, "nome_cliente": self.nome_cliente}
 
     def toDict(self):
-        return {column.name: self[column.name] for column in inspect(self).c}
+        _toDict(self)
 
 class funcionario(Base):
     __tablename__ = 'Funcionario'
@@ -28,14 +38,15 @@ class funcionario(Base):
     #     return {"CPF_funcionario: ": self.CPF_funcionario, "nome_funcionario:": self.nome_funcionario, "salario_fixo:": self.salario_fixo, "data_admissao:": self.data_admissao, ""}
 
     def toDict(self):
-        return {column.name: self[column.name] for column in inspect(self).c}
+        _toDict(self)
 
 class fornecedor(Base):
     __tablename__ = 'Fornecedor'
     CNPJ_fornecedor=Column(VARCHAR, primary_key=True)
     nome_fornecedor=Column(VARCHAR)
+
     def toDict(self):
-        return {column.name: self[column.name] for column in inspect(self).c}
+        _toDict(self)
 
 class produto(Base):
     __tablename__ = 'Produto'
@@ -46,7 +57,7 @@ class produto(Base):
     preco_venda=Column(Numeric)
 
     def toDict(self):
-        return {column.name: self[column.name] for column in inspect(self).c}
+        _toDict(self)
 
 class venda(Base):
     __tablename__ = 'Venda'
@@ -64,7 +75,7 @@ class venda(Base):
     #cliente = relationship('Cliente', backref='Venda')
 
     def toDict(self):
-        return {column.name: self[column.name] for column in inspect(self).c}
+        _toDict(self)
 
 class compra(Base):
     __tablename__ = 'Compra'
@@ -82,7 +93,7 @@ class compra(Base):
     #cliente = relationship('Cliente', backref='Compra')
 
     def toDict(self):
-        return {column.name: self[column.name] for column in inspect(self).c}
+        _toDict(self)
 
 class salario(Base):
     __tablename__ = 'Salario'
@@ -97,7 +108,7 @@ class salario(Base):
     #funcionario = relationship('Funcionario', backref='Salario')
 
     def toDict(self):
-        return {column.name: self[column.name] for column in inspect(self).c}
+        _toDict(self)
 
 
 

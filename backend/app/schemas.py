@@ -85,7 +85,24 @@ class produtoSchema(BaseModel):
         orm_mode = True
 
 class requestProduto(BaseModel):
-    parameter: produtoSchema = Field(...)
+    nome_produto : str
+    quantidade_produto : int
+    em_promocao : bool
+    preco_venda : float
+
+class requestCodigoProduto(BaseModel):
+    codigo : int
+class requestQuantidadeProduto(BaseModel):
+    codigo : int
+    quantidade : int
+
+class requestPromocaoProduto(BaseModel):
+    codigo : int
+    emPromocao: bool
+
+class requestPrecoProduto(BaseModel):
+    codigo : int
+    preco: float
 
 class responseProduto(GenericModel, Generic[T]):
     code: str
