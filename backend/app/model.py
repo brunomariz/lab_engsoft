@@ -22,7 +22,7 @@ class cliente(Base):
     nome_cliente=Column(VARCHAR)
 
     def toDict(self):
-        _toDict(self)
+        return _toDict(self)
 
 class funcionario(Base):
     __tablename__ = 'Funcionario'
@@ -38,7 +38,7 @@ class funcionario(Base):
     #     return {"CPF_funcionario: ": self.CPF_funcionario, "nome_funcionario:": self.nome_funcionario, "salario_fixo:": self.salario_fixo, "data_admissao:": self.data_admissao, ""}
 
     def toDict(self):
-        _toDict(self)
+       return _toDict(self)
 
 class fornecedor(Base):
     __tablename__ = 'Fornecedor'
@@ -46,7 +46,7 @@ class fornecedor(Base):
     nome_fornecedor=Column(VARCHAR)
 
     def toDict(self):
-        _toDict(self)
+       return _toDict(self)
 
 class produto(Base):
     __tablename__ = 'Produto'
@@ -57,7 +57,7 @@ class produto(Base):
     preco_venda=Column(Numeric)
 
     def toDict(self):
-        _toDict(self)
+       return _toDict(self)
 
 class venda(Base):
     __tablename__ = 'Venda'
@@ -75,7 +75,7 @@ class venda(Base):
     #cliente = relationship('Cliente', backref='Venda')
 
     def toDict(self):
-        _toDict(self)
+       return _toDict(self)
 
 class compra(Base):
     __tablename__ = 'Compra'
@@ -93,7 +93,7 @@ class compra(Base):
     #cliente = relationship('Cliente', backref='Compra')
 
     def toDict(self):
-        _toDict(self)
+        return _toDict(self)
 
 class salario(Base):
     __tablename__ = 'Salario'
@@ -108,7 +108,7 @@ class salario(Base):
     #funcionario = relationship('Funcionario', backref='Salario')
 
     def toDict(self):
-        _toDict(self)
+       return _toDict(self)
 
 
 
