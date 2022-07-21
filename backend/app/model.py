@@ -29,7 +29,6 @@ class funcionario(Base):
     CPF_funcionario=Column(VARCHAR, primary_key=True)
     nome_funcionario=Column(VARCHAR)
     salario_fixo=Column(Integer)
-    data_admissao=Column(Date)
     eh_gerente=Column(Boolean)
     comissao_venda=Column(Numeric)
     login_usuario=Column(VARCHAR)

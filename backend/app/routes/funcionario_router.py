@@ -21,7 +21,7 @@ def get_db():
 async def get_funcionarios():
     return funcionario_controller.get_funcionarios(Sessionlocal())
 
-@funcionario_router.get("/funcionario")
+@funcionario_router.post("/funcionario")
 async def search_funcionario(request:requestFuncionario):
     return funcionario_controller.get_funcionarioEspecifico(Sessionlocal(),request)
 
