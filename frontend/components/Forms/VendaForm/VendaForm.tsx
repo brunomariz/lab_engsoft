@@ -1,14 +1,16 @@
 import { Form, Formik } from "formik";
 import React, { useState } from "react";
+import Select from "react-select";
+import { mockProducts } from "../../../constants/mock/mockProdutos";
 import {
   IVendaValidation,
   vendaValidation,
 } from "../../../validation/venda/vendaValidation";
 import Input from "../../Input/Input";
 
-type Props = {};
+type Props = { setStep: Function; setValues: Function };
 
-function VendaForm({}: Props) {
+function VendaForm({ setStep, setValues }: Props) {
   const [numProducts, setnumProducts] = useState(1);
   const initialValues: IVendaValidation = {
     cpf_cliente: "",
@@ -22,7 +24,10 @@ function VendaForm({}: Props) {
   };
   const handleSubmit = (values: IVendaValidation) => {
     console.log(values);
+    setValues(values);
+    setStep(1);
   };
+  const codigoProdutoOptions = mockProducts.map((item) => item.codigo_produto);
   return (
     <div>
       <Formik
@@ -46,6 +51,27 @@ function VendaForm({}: Props) {
                     label="Código do Produto"
                     name={`produtos.${index}.codigo_produto`}
                   ></Input>
+                  {/* <label
+                    className="block text-gray-700 text-sm font-bold"
+                    htmlFor={`produtos.${index}.codigo_produto`}
+                  >
+                    Código do Produto
+                  </label> */}
+                  {/* <select
+                    className="p-3 rounded-lg "
+                    name={`produtos.${index}.codigo_produto`}
+                    id={`produtos.${index}.codigo_produto`}
+                  >
+                    {mockProducts.map((product) => {
+                      return (
+                        <option
+                          value={product.codigo_produto}
+                          label={product.codigo_produto}
+                        ></option>
+                      );
+                    })}
+                  </select> */}
+                  {/* <Select options={codigoProdutoOptions}></Select> */}
                 </div>
                 <div className="col-span-6">
                   <Input
@@ -56,39 +82,17 @@ function VendaForm({}: Props) {
               </div>
             );
           })}
-
-          {/* <div className="h-full flex items-center justify-center col-span-2">
-                  <input
-                    name="em_promocao"
-                    type="checkbox"
-                    className="scale-[2]"
-                  ></input>
-                  <label
-                    className="p-2 text-gray-700 text-sm font-bold"
-                    htmlFor="em_promocao"
-                  >
-                    Promoção
-                  </label>
-                </div> */}
-          {/* <div className="grid grid-cols-12">
-            <div className="col-span-5">
-              <Input label="Nome do Produto" name="nome_produto"></Input>
-            </div>
-            <div className="col-span-4">
-              <Input label="Preço da Venda" name="preco_venda"></Input>
-            </div>
-          </div> */}
-          <button
+          <div
             onClick={() => setnumProducts(numProducts + 1)}
-            className=" text-slate-900 border-2 border-slate-900 font-bold py-1 mx-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="hover:cursor-pointer inline-block text-slate-900 border-2 border-slate-900 font-bold py-1 mx-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
             + Produto
-          </button>
+          </div>
           <button
             className="bg-slate-500 hover:bg-slate-700 text-white font-bold py-1 border-2 border-slate-500 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
           >
-            Submit
+            Ir para confirmação
           </button>
         </Form>
       </Formik>

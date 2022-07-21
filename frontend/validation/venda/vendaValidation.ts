@@ -4,7 +4,7 @@ export interface IVendaValidation {
   cpf_cliente: string;
   cpf_vendedor: string;
   produtos: {
-    codigo_produto: number;
+    codigo_produto: string;
     quantidade_produto: number;
   }[];
 }
@@ -18,7 +18,7 @@ export const vendaValidation = object().shape({
   produtos: array()
     .of(
       object().shape({
-        codigo_produto: number().required("Campo obrigatório"),
+        codigo_produto: string(), //.required("Campo obrigatório"),
         // nome_produto: string().required("Campo obrigatório"),
         quantidade_produto: number().required("Campo obrigatório"),
         // em_promocao: bool(),
