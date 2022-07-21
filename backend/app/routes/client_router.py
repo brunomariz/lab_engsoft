@@ -23,21 +23,21 @@ async def get_clientes():
     return client_controller.get_clientes(Sessionlocal())
 
 @client_router.get("/cliente")
-async def search_clientes(request:requestCliente, db:Session=Depends(get_db())):
+async def search_clientes(request:requestCliente, db:Session):
     return client_controller.get_clienteEspecifico(request)
 
 @client_router.post("/create")
-async def create_cliente(request:requestCliente, db:Session=Depends(get_db())):
+async def create_cliente(request:requestCliente, db:Session):
     return client_controller.create_cliente(db, request)
 
 @client_router.post("/remove")
-async def create_cliente(request:requestCliente, db:Session=Depends(get_db())):
+async def create_cliente(request:requestCliente, db:Session):
     return client_controller.remove_cliente(db, request)
 
 @client_router.post("/update")
-async def update_cliente(request:requestCliente, db:Session=Depends(get_db())):
+async def update_cliente(request:requestCliente, db:Session):
     return client_controller.update_cliente(db, request)
 
 # @client_router.post("/create")
-# async def create_cliente(request:requestCliente, db:Session=Depends(get_db)):
+# async def create_cliente(request:requestCliente, db:Sessionget_db)):
 #     return client_controller.create_cliente(db, request)

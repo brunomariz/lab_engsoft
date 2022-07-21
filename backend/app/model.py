@@ -6,8 +6,8 @@ class cliente(Base):
     __tablename__ = 'Cliente'
     CPF_cliente=Column(VARCHAR, primary_key=True)
     nome_cliente=Column(VARCHAR)
-    def toDict(self):
-        return {"CPF_cliente": self.CPF_cliente, "nome_cliente": self.nome_cliente}
+    # def toDict(self):
+    #     return {"CPF_cliente": self.CPF_cliente, "nome_cliente": self.nome_cliente}
 
 class funcionario(Base):
     __tablename__ = 'Funcionario'
