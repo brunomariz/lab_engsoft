@@ -7,7 +7,7 @@ T = TypeVar('T')
 
 class clienteSchema(BaseModel):
     CPF_cliente: str
-    nome_cliente: Optional[str]
+    nome_cliente: str
 
     class config:
         orm_mode = True
@@ -17,11 +17,8 @@ class requestCliente(BaseModel):
     CPF_cliente: str
     nome_cliente: Optional[str]
 
-class responseCliente(GenericModel, Generic[T]):
-    code: str
-    status: str
-    message: str
-    result: Optional[T]
+def responseCliente(code: str, status: str, message: str):
+    return {"code: ": code, "status: ": status, "message: ": message}
 
 class usuarioSchema(BaseModel):
     login: str
@@ -36,11 +33,8 @@ class requestUsuario(BaseModel):
     senha:str
     eh_admin:bool=False
 
-class responseUsuario(GenericModel, Generic[T]):
-    code: str
-    status: str
-    message: str
-    result: Optional[T]
+def responseUsuario(code: str, status: str, message: str):
+    return {"code: ": code, "status: ": status, "message: ": message}
 
 class funcionarioSchema(BaseModel):
     CPF_funcionario: str
@@ -62,11 +56,8 @@ class requestFuncionario(BaseModel):
     eh_gerente: Optional[bool]=False
     comissao_venda:Optional[float]=0.1
 
-class responseFuncionario(GenericModel, Generic[T]):
-    code: str
-    status: str
-    message: str
-    result: Optional[T]
+def responseFuncionario(code: str, status: str, message: str):
+    return {"code: ": code, "status: ": status, "message: ": message}
 
 class fornecedorSchema(BaseModel):
     CNPJ_fornecedor: str
@@ -79,11 +70,8 @@ class requestFornecedor(BaseModel):
     CNPJ_fornecedor: str
     nome_fornecedor: Optional[str]
 
-class responseFornecedor(GenericModel, Generic[T]):
-    code: str
-    status: str
-    message: str
-    result: Optional[T]
+def responseFornecedor(code: str, status: str, message: str):
+    return {"code: ": code, "status: ": status, "message: ": message}
 
 class produtoSchema(BaseModel):
     codigo_produto: int
@@ -102,11 +90,8 @@ class requestProduto(BaseModel):
     em_promocao:Optional[bool]=False
     preco_venda=float
 
-class responseProduto(GenericModel, Generic[T]):
-    code: str
-    status: str
-    message: str
-    result: Optional[T]
+def responseProduto(code: str, status: str, message: str):
+    return {"code: ": code, "status: ": status, "message: ": message}
 
 class salarioSchema(BaseModel):
     id_salario: int
@@ -129,11 +114,8 @@ class requestSalario(BaseModel):
     
     CPF_funcionario: str
 
-class responseSalario(GenericModel, Generic[T]):
-    code: str
-    status: str
-    message: str
-    result: Optional[T]
+def responseSalario(code: str, status: str, message: str):
+    return {"code: ": code, "status: ": status, "message: ": message}
 
 class compraSchema(BaseModel):
     id_compra: int
@@ -158,11 +140,8 @@ class requestCompra(BaseModel):
     CPF_funcionario: str
     CNPJ_fornecedor: str
 
-class responseCompra(GenericModel, Generic[T]):
-    code: str
-    status: str
-    message: str
-    result: Optional[T]
+def responseCompra(code: str, status: str, message: str):
+    return {"code: ": code, "status: ": status, "message: ": message}
 
 class vendaSchema(BaseModel):
     id_venda: int
@@ -187,8 +166,5 @@ class requestVenda(BaseModel):
     CPF_funcionario: str
     CPF_cliente: str
 
-class responseVenda(GenericModel, Generic[T]):
-    code: str
-    status: str
-    message: str
-    result: Optional[T]
+def responseVenda(code: str, status: str, message: str):
+    return {"code: ": code, "status: ": status, "message: ": message}

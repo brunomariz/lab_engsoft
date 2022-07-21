@@ -24,21 +24,30 @@ class funcionarioService(BaseService):
         return resultado
 
     def createFuncionario(self, db:Session, Funcionario:funcionarioSchema):
+      try:
         _Funcionario = funcionario(nome_funcionario=Funcionario.nome_funcionario, salario_fixo=Funcionario.salario_fixo,data_admissao=Funcionario.data_admissao,eh_gerente=Funcionario.eh_gerente,comissao_venda=Funcionario.comissao_venda)
         db.add(_Funcionario)
         db.commit()
         db.refresh(_Funcionario)
-        return _Funcionario
+        return True
+      except:
+        return False
 
     def removeFuncionario(self,db:Session, CPF_Funcionario:str):
+      try:
         _Funcionario = self.getFuncionarioEspecifico(db,CPF_Funcionario)
         db.delete(_Funcionario)
         db.commit()
-        return _Funcionario
+        return True
+      except:
+        return False
 
     def updateFuncionario(self,db:Session, CPF_funcionario:str, nome_funcionario: str):
+      try: 
         _Funcionario= self.getFuncionarioEspecifico(db, CPF_funcionario)
         _Funcionario.nome_funcionario = nome_funcionario
         db.commit()
         db.refresh(_Funcionario)
-        return _Funcionario
+        return True
+      except:
+        return False

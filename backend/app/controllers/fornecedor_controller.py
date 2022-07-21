@@ -13,13 +13,19 @@ class fornecedorController(BaseController):
         return json.dumps([obj.toDict() for obj in self.service.getFornecedores(db)])
 
     def get_fornecedorEspecifico(self,db:Session, request:requestFornecedor):
-        return json.dumps([self.service.getFornecedorEspecifico(db, request.CPF_fornecedor).toDict()])
+        return json.dumps([(self.service.getFornecedorEspecifico(db, request.CNPJ_fornecedor)).toDict()])
 
     def create_fornecedor(self,db:Session, request:requestFornecedor):
-        return json.dumps([self.service.createFornecedor(db, request)])
+        if self.service.createFornecedor(db, request):
+            return responseFornecedor("200","Ok","Fornecedor criado com sucesso")
+        return responseFornecedor("400","Erro","Erro na criacao de fornecedor")
 
     def remove_fornecedor(self,db:Session, request:requestFornecedor):
-        return json.dumps([self.service.removeFornecedor(db, request.CPF_fornecedor)])
+        if self.service.removeFornecedor(db, request.CNPJ_fornecedor):
+            return responseFornecedor("200","Ok","Fornecedor removido com sucesso")
+        return responseFornecedor("400","Erro","Erro na remocao de fornecedor")
 
     def update_fornecedor(self,db:Session, request:requestFornecedor):
-        return json.dumps([self.service.updateFornecedor(db, request.CPF_fornecedor, request.nome_fornecedor)])
+        if self.service.updateFornecedor(db, request.CNPJ_fornecedor, request.nome_fornecedor):
+            return responseFornecedor("200","Ok","Fornecedor atualizado com sucesso")
+        return responseFornecedor("400","Erro","Erro na atualizacao de fornecedor")

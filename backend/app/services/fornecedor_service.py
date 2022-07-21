@@ -17,28 +17,37 @@ class fornecedorService(BaseService):
         return resultado
         # json.dumps([obj.toDict() for obj in resultado])
 
-    def getFornecedorEspecifico(self, db:Session, CPF_fornecedor:str):
-        resultado = db.query(fornecedor).filter(fornecedor.CPF_fornecedor == CPF_fornecedor).first()
+    def getFornecedorEspecifico(self, db:Session, CNPJ_fornecedor:str):
+        resultado = db.query(fornecedor).filter(fornecedor.CNPJ_fornecedor == CNPJ_fornecedor).first()
         if resultado is None:
             resultado = []
         return resultado
 
     def createFornecedor(self, db:Session, Fornecedor:fornecedorSchema):
+      try:
         _fornecedor = fornecedor(nome_fornecedor=Fornecedor.nome_fornecedor)
         db.add(_fornecedor)
         db.commit()
         db.refresh(_fornecedor)
-        return _fornecedor
+        return True
+      except:
+        return False
 
-    def removeFornecedor(self,db:Session, CPF_fornecedor:str):
-        _fornecedor = self.getFornecedorEspecifico(db,CPF_fornecedor)
+    def removeFornecedor(self,db:Session, CNPJ_fornecedor:str):
+      try:
+        _fornecedor = self.getFornecedorEspecifico(db,CNPJ_fornecedor)
         db.delete(_fornecedor)
         db.commit()
-        return _fornecedor
+        return True
+      except:
+        return False
 
-    def updateFornecedor(self,db:Session, CPF_fornecedor:str, nome_fornecedor: str):
-        _fornecedor= self.getFornecedorEspecifico(db, CPF_fornecedor)
+    def updateFornecedor(self,db:Session, CNPJ_fornecedor:str, nome_fornecedor: str):
+      try:
+        _fornecedor= self.getFornecedorEspecifico(db, CNPJ_fornecedor)
         _fornecedor.nome_fornecedor = nome_fornecedor
         db.commit()
         db.refresh(_fornecedor)
-        return _fornecedor
+        return True
+      except:
+        return False
