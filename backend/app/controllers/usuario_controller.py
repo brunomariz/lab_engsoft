@@ -3,7 +3,6 @@ from sqlalchemy.orm import Session
 from app.schemas import usuarioSchema, requestUsuario, responseUsuario
 from app.services.usuario_service import usuarioService
 import json
-# Session.query
 
 class usuarioController(BaseController):
     def __init__(self, service=...) -> None:
@@ -29,8 +28,3 @@ class usuarioController(BaseController):
         if self.service.updateUsuario(db, request.login, request.senha, request.eh_admin):
             return responseUsuario("200","Ok","usuario atualizado com sucesso")
         return responseUsuario("400","Erro","Erro na atualizacao de usuario")
-
-    # def update_usuario(self,db:Session, request:requestUsuario):
-    #     if self.service.updateUsuario(db, request.login, request.senha, request.eh_admin):
-    #         return responseUsuario("200","Ok","usuario atualizado com sucesso")
-    #     return responseUsuario("400","Erro","Erro na atualizacao de usuario")
