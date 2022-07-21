@@ -4,10 +4,10 @@ import Table from "../../components/Table/Table";
 import { mockProducts } from "../../constants/mock/mockProdutos";
 
 interface IProduto {
-  nome_produto: string;
   quantidade_produto: number;
+  nome_produto: string;
   em_promocao: boolean;
-  preco_venda: number;
+  codigo_produto: number;
 }
 
 type Props = {
@@ -18,7 +18,7 @@ function Produtos({ data }: Props) {
   return (
     <SidebarLayout title="Produtos">
       <Table
-        columnTitles={["Código", "Nome", "Quantidade", "Promoção", "Preço"]}
+        columnTitles={["Quantidade", "Nome", "Promoção", "Código"]}
         items={data.map((item) => {
           return {
             ...item,
@@ -34,7 +34,7 @@ function Produtos({ data }: Props) {
 // This gets called on every request
 export async function getServerSideProps() {
   // Fetch data from external API
-  const res = await fetch(`http://localhost:8080/produto`);
+  const res = await fetch(`http://localhost:8080/produto/list`);
   const data = await res.json();
   console.log(data);
 
