@@ -15,13 +15,10 @@ class clienteSchema(BaseModel):
 class requestCliente(BaseModel):
     #parameter: clienteSchema = Field(...)
     CPF_cliente: str
-    nome_cliente: Optional[str]
+    nome_cliente: str
 
-class responseCliente(GenericModel, Generic[T]):
-    code: str
-    status: str
-    message: str
-    result: Optional[T]
+def responseCliente(code: str, status: str, message: str):
+    return {"code: ": code, "status: ": status, "message: ": message}
 
 class usuarioSchema(BaseModel):
     login: str
@@ -34,7 +31,7 @@ class usuarioSchema(BaseModel):
 class requestUsuario(BaseModel):
     parameter: usuarioSchema = Field(...)
 
-class responseUsuario(GenericModel, Generic[T]):
+class responseUsuario(BaseModel):
     code: str
     status: str
     message: str
