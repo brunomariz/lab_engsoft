@@ -20,6 +20,7 @@ function Table({ items, title, columnTitles }: Props) {
           return <div className="p-1">{columnTitle}</div>;
         })}
       </div>
+      {items.length == 0 ? <h3 className="p-1">Sem dados</h3> : null}
       {items.map((item, index) => {
         return (
           <div
