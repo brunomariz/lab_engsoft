@@ -56,14 +56,13 @@ class produto(Base):
 
 class venda(Base):
     __tablename__ = 'Venda'
-    id_venda=Column(Integer, primary_key=True)
-    data_venda=Column(Date)
+    data_venda=Column(Date, primary_key=True)
     valor_por_item=Column(Numeric)
     quantidade_venda=Column(Integer,default=1)
 
-    codigo_produto=Column(Integer,ForeignKey('Produto.codigo_produto'), nullable=False)
-    CPF_funcionario=Column(String,ForeignKey('Funcionario.CPF_funcionario'), nullable=False)
-    CPF_cliente=Column(String,ForeignKey('CPF_cliente'), nullable=False)
+    codigo_produto=Column(Integer,ForeignKey('Produto.codigo_produto'),primary_key=True, nullable=False)
+    CPF_funcionario=Column(String,ForeignKey('Funcionario.CPF_funcionario'),primary_key=True, nullable=False)
+    CPF_cliente=Column(String,ForeignKey('CPF_cliente'),primary_key=True, nullable=False)
 
 
     def toDict(self):
@@ -75,7 +74,7 @@ class compra(Base):
     valor_por_item=Column(Numeric)
     quantidade_compra=Column(Integer, default=1)
 
-    codigo_produto=Column(Integer,ForeignKey('Produto.codigo_produto', ondelete='CASCADE'), nullable=False)
+    codigo_produto=Column(Integer,ForeignKey('Produto.codigo_produto', ondelete='CASCADE'),primary_key=True, nullable=False)
     CPF_funcionario=Column(String,ForeignKey('Funcionario.CPF_funcionario', ondelete='CASCADE'),primary_key=True, nullable=False)
     CNPJ_fornecedor=Column(String,ForeignKey('Fornecedor.CNPJ_fornecedor', ondelete='CASCADE'),primary_key=True, nullable=False)
 

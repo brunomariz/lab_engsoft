@@ -42,7 +42,7 @@ class CompraController(BaseController):
             except Exception as e:
                 print(e)
                 return False
-            return len(completed) == len(request.produtos)
+        return len(completed) == len(request.produtos)
 
     def remove_compra(self, db: Session, id: int):
         return self.service.removeCompra(db, id)
