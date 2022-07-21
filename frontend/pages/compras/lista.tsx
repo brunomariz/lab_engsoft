@@ -6,12 +6,11 @@ import { mockSales } from "../../constants/mock/mockSales";
 
 interface ICompras {
   id_compra: number;
-  data_compra: string;
-  valor_por_item: number;
   quantidade_compra: number;
+  CPF_funcionario: string;
   codigo_produto: number;
-  cpf_funcionario: string;
-  cnpj_fornecedor: string;
+  data_compra: string;
+  CNPJ_fornecedor: string;
 }
 
 type Props = {
@@ -24,11 +23,10 @@ function lista({ data }: Props) {
       <Table
         columnTitles={[
           "ID",
-          "Data",
-          "Valor Item",
           "Quantidade",
-          "Código",
           "CPF Funcionario",
+          "Código",
+          "Data",
           "CNPJ Fornecedor",
         ]}
         items={data}
@@ -41,7 +39,7 @@ function lista({ data }: Props) {
 // This gets called on every request
 export async function getServerSideProps() {
   // Fetch data from external API
-  const res = await fetch(`http://localhost:8080/compras`);
+  const res = await fetch(`http://localhost:8080/compra/listAll`);
   const data = await res.json();
 
   // Pass data to the page via props
