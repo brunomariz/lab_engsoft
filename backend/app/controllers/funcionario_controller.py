@@ -26,6 +26,6 @@ class funcionarioController(BaseController):
         return responseFuncionario("400","Erro","Erro na remocao de funcionario")
 
     def update_funcionario(self,db:Session, request:requestFuncionario):
-        if self.service.updateFuncionario(db, request.CPF_funcionario, request.nome_funcionario):
+        if self.service.updateFuncionario(db, request.CPF_funcionario, request.nome_funcionario,request.salario_fixo,request.data_admissao,request.eh_gerente,request.comissao_venda):
             return responseFuncionario("200","Ok","Funcionario atualizado com sucesso")
         return responseFuncionario("400","Erro","Erro na atualizacao de funcionario")
