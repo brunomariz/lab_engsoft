@@ -22,9 +22,10 @@ def get_db():
 async def get_clientes():
     return client_controller.get_clientes(Sessionlocal())
 
-# @client_router.get("/cliente")
-# async def search_clientes(request:requestCliente, db:Session):
-#     return client_controller.get_clienteEspecifico(Sessionlocal(), request)
+@client_router.post("/cliente")
+async def search_clientes(request:requestCliente): #request:requestCliente
+    return client_controller.get_clientes(Sessionlocal())
+    #return client_controller.get_clienteEspecifico(Sessionlocal(), request)
 
 # @client_router.post("/create")
 # async def create_cliente(request:requestCliente, db:Session):

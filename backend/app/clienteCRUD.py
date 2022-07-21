@@ -20,6 +20,7 @@ class ClientService(BaseService):
 
     def getClienteEspecifico(self, db:Session, CPF_cliente:str):
         resultado = db.query(cliente).filter(cliente.CPF_cliente == CPF_cliente).first()
+        print(resultado)
         return pd.from_sql(resultado).to_dict('records')
 
     def createCliente(self, db:Session, Cliente:clienteSchema):
