@@ -19,11 +19,11 @@ def get_db():
     db.close()
 
 
-@produto_router.get("/")
+@produto_router.get("/list")
 async def get_produtos():
     return produto_controller.getProdutos(Sessionlocal())
 
-@produto_router.get("/produto/")
+@produto_router.get("/byCodigo/")
 async def get_produto_by_codigo(codigo : int):
     return produto_controller.getPrduto_byCodigo(Sessionlocal(), codigo)
 
