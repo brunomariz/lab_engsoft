@@ -42,14 +42,14 @@ class salarioService(BaseService):
       except:
         return False
 
-    def updateSalario(self,db:Session, id_salario, data_salario,valor_por_item,quantidade_salario,banco_depositado,id_funcionario):
+    def updateSalario(self,db:Session, id_salario, data_salario,valor_por_item,quantidade_salario,banco_depositado,CPF_funcionario):
       try:
         _salario= self.getSalarioEspecifico(db, id_salario)
         _salario.data_salario = data_salario
         _salario.valor_por_item=valor_por_item
         _salario.quantidade_salario=quantidade_salario
         _salario.banco_depositado=banco_depositado
-        _salario.id_funcionario=id_funcionario
+        _salario.CPF_funcionario=CPF_funcionario
         db.commit()
         db.refresh(_salario)
         return True
