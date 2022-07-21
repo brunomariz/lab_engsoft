@@ -1,21 +1,19 @@
 from sqlalchemy.orm import Session
-from sqlalchemy.sql import select
-from app.model import cliente
-from app.schemas import clienteSchema
+from app.schemas import fornecedorSchema
 import pandas as pd
 import json 
 from app.services._base import BaseService
 from app.config import Sessionlocal
-from app.model import cliente
+from app.model import fornecedor
 from app.config import engine
 #from app.config import conn
 
-class ClientService(BaseService):
+class fornecedorService(BaseService):
     def __init__(self) -> None:
         super().__init__()
 
-    def getClientes(self, db:Session, skip:int=0, limit:int=100):
-        resultado=db.query(cliente).offset(skip).limit(limit).all()
+    def getFornecedores(self, db:Session, skip:int=0, limit:int=100):
+        resultado=db.query(fornecedor).offset(skip).limit(limit).all()
         return json.dumps([obj.toDict() for obj in resultado])
 
     # def getClienteEspecifico(self, db:Session, CPF_cliente:str):

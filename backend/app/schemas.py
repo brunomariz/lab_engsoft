@@ -13,7 +13,8 @@ class clienteSchema(BaseModel):
         orm_mode = True
 
 class requestCliente(BaseModel):
-    parameter: clienteSchema = Field(...)
+    CPF_cliente: str
+    nome_cliente: Optional[str]
 
 class responseCliente(GenericModel, Generic[T]):
     code: str
@@ -30,7 +31,9 @@ class usuarioSchema(BaseModel):
         orm_mode = True
 
 class requestUsuario(BaseModel):
-    parameter: usuarioSchema = Field(...)
+    login: str
+    senha:str
+    eh_admin:bool=False
 
 class responseUsuario(GenericModel, Generic[T]):
     code: str
@@ -51,7 +54,14 @@ class funcionarioSchema(BaseModel):
         orm_mode = True
 
 class requestFuncionario(BaseModel):
-    parameter: funcionarioSchema = Field(...)
+    CPF_funcionario: str
+    nome_funcionario: Optional[str]
+    salario_fixo: float
+    data_admissao: date
+    eh_gerente: Optional[bool]=False
+    comissao_venda:Optional[float]=0.1
+
+    login_usuario:str
 
 class responseFuncionario(GenericModel, Generic[T]):
     code: str
@@ -67,7 +77,8 @@ class fornecedorSchema(BaseModel):
         orm_mode = True
 
 class requestFornecedor(BaseModel):
-    parameter: fornecedorSchema = Field(...)
+    CNPJ_fornecedor: str
+    nome_fornecedor: Optional[str]
 
 class responseFornecedor(GenericModel, Generic[T]):
     code: str
@@ -86,7 +97,11 @@ class produtoSchema(BaseModel):
         orm_mode = True
 
 class requestProduto(BaseModel):
-    parameter: produtoSchema = Field(...)
+    codigo_produto: int
+    nome_produto: str
+    quantidade_produto: int=0
+    em_promocao:Optional[bool]=False
+    preco_venda=float
 
 class responseProduto(GenericModel, Generic[T]):
     code: str
@@ -107,7 +122,13 @@ class salarioSchema(BaseModel):
         orm_mode = True
 
 class requestSalario(BaseModel):
-    parameter: salarioSchema = Field(...)
+    id_salario: int
+    data_salario: date
+    valor_por_item:float
+    quantidade_salario: int=1
+    banco_depositado:str
+    
+    CPF_funcionario: str
 
 class responseSalario(GenericModel, Generic[T]):
     code: str
@@ -129,7 +150,15 @@ class compraSchema(BaseModel):
         orm_mode = True
 
 class requestCompra(BaseModel):
-    parameter: compraSchema = Field(...)
+    id_compra: int
+    data_compra: date
+    valor_por_item:float
+    quantidade_compra: int=1
+
+    codigo_produto: int
+    CPF_funcionario: str
+    CNPJ_fornecedor: str
+    
 
 class responseCompra(GenericModel, Generic[T]):
     code: str
@@ -151,7 +180,14 @@ class vendaSchema(BaseModel):
         orm_mode = True
 
 class requestVenda(BaseModel):
-    parameter: vendaSchema = Field(...)
+    id_venda: int
+    data_venda: date
+    valor_por_item:float
+    quantidade_venda: int=1
+
+    codigo_produto: int
+    CPF_funcionario: str
+    CPF_cliente: str
 
 class responseVenda(GenericModel, Generic[T]):
     code: str
