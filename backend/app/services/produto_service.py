@@ -47,7 +47,7 @@ class ProdutoService(BaseService):
     def setQuantidadeProduto(self, db:Session, codigo : int ,quantidade:int):
         _produto = self.getProduto_byCodigo(db, codigo)
 
-        if _produto.quantidade_produto + quantidade <0:
+        if _produto is None or  _produto.quantidade_produto + quantidade <0:
             return False
         try:
             _produto.quantidade_produto += quantidade

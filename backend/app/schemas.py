@@ -133,7 +133,7 @@ def responseSalario(code: str, status: str, message: str):
     return {"code: ": code, "status: ": status, "message: ": message}
 
 class compraSchema(BaseModel):
-    id_compra: int
+    id_compra: Optional[int]
     data_compra: date
     valor_por_item:float
     quantidade_compra: int=1
