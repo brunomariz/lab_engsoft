@@ -99,5 +99,11 @@ class salario(Base):
     def toDict(self):
         return {column.name: self[column.name] for column in inspect(self).c}
 
+class usuario(Base):
+    __tablename__ = 'Usuario'
+    login=Column(String,primary_key=True)
+    senha=Column(VARCHAR)
+    eh_admin=Column(Boolean)
 
-
+    def toDict(self):
+        return {column.name: self[column.name] for column in inspect(self).c}
