@@ -28,3 +28,8 @@ class usuarioController(BaseController):
         if self.service.updateUsuario(db, request.login, request.senha, request.eh_admin):
             return responseUsuario("200","Ok","usuario atualizado com sucesso")
         return responseUsuario("400","Erro","Erro na atualizacao de usuario")
+    
+    def verify_usuario(self,db:Session, request:requestUsuario):
+        if self.service.verifyUsuario(db, request.login, request.senha):
+            return responseUsuario("200","Ok","Usuario permitido")
+        return responseUsuario("400","Erro","Erro de autorizacao")

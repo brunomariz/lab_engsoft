@@ -2,13 +2,13 @@ from fastapi import APIRouter, HTTPException, Path, Depends
 from app.config import Sessionlocal
 from sqlalchemy.orm import Session
 from app.schemas import usuarioSchema, requestUsuarios, responseUsuarios
-from app.controllers.usuario_controller import usuariosController
-from app.services.usuario_service import usuariosService
+from app.controllers.usuario_controller import usuarioController
+from app.services.usuario_service import usuarioService
 
 
-usuarios_router = APIRouter(prefix="/usuarios")
+usuario_router = APIRouter(prefix="/usuarios")
 
-usuarios_controller = usuariosController(service=usuariosService)
+usuario_controller = usuarioController(service=usuarioService)
 
 def get_db():
     db = Sessionlocal()
@@ -18,28 +18,29 @@ def get_db():
         pass
     db.close()
 
-@usuarios_router.get("/")
+@usuario_router.get("/")
 async def get_usuarios():
-    return usuarios_controller.get_usuarios(Sessionlocal())
+    return usuario_controller.get_usuarios(Sessionlocal())
 
-@usuarios_router.get("/usuarios")
-async def search_usuarios(request:requestUsuarios):
-    return usuarios_controller.get_usuarioEspecifico(Sessionlocal(),request)
+@usuario_router.get("/usuarios")
+async def search_usuario(request:requestUsuarios):
+    return usuario_controller.get_usuarioEspecifico(Sessionlocal(),request)
 
-@usuarios_router.post("/create")
-async def create_usuarios(request:requestUsuarios):
-    return usuarios_controller.create_usuarios(Sessionlocal(), request)
+@usuario_router.post("/create")
+async def create_usuario(request:requestUsuarios):
+    return usuario_controller.create_usuarios(Sessionlocal(), request)
 
-@usuarios_router.post("/remove")
-async def create_usuarios(request:requestUsuarios):
-    return usuarios_controller.remove_usuarios(Sessionlocal(), request)
+@usuario_router.post("/remove")
+async def create_usuario(request:requestUsuarios):
+    return usuario_controller.remove_usuarios(Sessionlocal(), request)
 
-@usuarios_router.post("/update")
-async def update_usuarios(request:requestUsuarios):
-    return usuarios_controller.update_usuarios(Sessionlocal(), request)
+@usuario_router.post("/update")
+async def update_usuario(request:requestUsuarios):
+    return usuario_controller.update_usuarios(Sessionlocal(), request)
 
-# async def verify_usuarios(request:requestUsuarios):
-#     return usuarios_controller.verify_usuarios(Sessionlocal(), request)
+@usuario_router.post("/login")
+async def verify_usuario(request:requestUsuarios):
+    return usuario_controller.verify_usuario(Sessionlocal(), request)
 
 # @usuarios_router.post("/create")
 # async def create_usuariose(request:requestusuarioseget_db)):

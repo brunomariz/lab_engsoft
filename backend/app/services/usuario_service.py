@@ -23,7 +23,7 @@ class usuarioService(BaseService):
             resultado = []
         return resultado
 
-    def createusuario(self, db:Session, Usuario:usuarioSchema):
+    def createUsuario(self, db:Session, Usuario:usuarioSchema):
       try:
         _usuario = usuario(login=Usuario.login,senha=Usuario.senha,eh_admin=Usuario.eh_admin)
         db.add(_usuario)
@@ -33,7 +33,7 @@ class usuarioService(BaseService):
       except:
         return False
 
-    def removeusuario(self,db:Session, login:str):
+    def removeUsuario(self,db:Session, login:str):
       try:
         _usuario = self.getUsuarioEspecifico(db,login)
         db.delete(_usuario)
@@ -42,12 +42,21 @@ class usuarioService(BaseService):
       except:
         return False
 
-    def updateusuario(self,db:Session, CNPJ_usuario:str, nome_usuario: str):
+    def updateUsuario(self,db:Session, login:str, senha: str):
       try:
-        _usuario= self.getusuarioEspecifico(db, CNPJ_usuario)
-        _usuario.nome_usuario = nome_usuario
+        _usuario= self.getusuarioEspecifico(db, login)
+        _usuario.senha=senha
         db.commit()
         db.refresh(_usuario)
         return True
+      except:
+        return False
+      
+    def verifyUsuario(self,db:Session,login:str,senha:str):
+      try:
+        _usuario= self.getusuarioEspecifico(db, login)
+        if _usuario.senha == senha:
+          return True
+        return False
       except:
         return False
