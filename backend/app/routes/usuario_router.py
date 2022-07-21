@@ -31,7 +31,7 @@ async def create_usuario(request:requestUsuarios):
     return usuario_controller.create_usuarios(Sessionlocal(), request)
 
 @usuario_router.post("/remove")
-async def create_usuario(request:requestUsuarios):
+async def remove_usuario(request:requestUsuarios):
     return usuario_controller.remove_usuarios(Sessionlocal(), request)
 
 @usuario_router.post("/update")
@@ -41,7 +41,3 @@ async def update_usuario(request:requestUsuarios):
 @usuario_router.post("/login")
 async def verify_usuario(request:requestUsuarios):
     return usuario_controller.verify_usuario(Sessionlocal(), request)
-
-# @usuarios_router.post("/create")
-# async def create_usuariose(request:requestusuarioseget_db)):
-#     return usuarios_controller.create_usuariose(db, request)

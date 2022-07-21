@@ -31,5 +31,6 @@ class usuarioController(BaseController):
     
     def verify_usuario(self,db:Session, request:requestUsuario):
         if self.service.verifyUsuario(db, request.login, request.senha):
-            return responseUsuario("200","Ok","Usuario permitido")
+            return json.dumps([{"Usuario: ": f"{request.login}"}])
+            # responseUsuario("200","Ok","Usuario permitido")
         return responseUsuario("400","Erro","Erro de autorizacao")
