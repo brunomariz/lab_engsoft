@@ -10,8 +10,22 @@ from app.routes.usuario_router import usuario_router
 from app.routes.venda_router import venda_router
 from app.config import engine
 import app.model as model
+from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI()
+
+origins = [
+    "*",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 model.Base.metadata.create_all(bind=engine)
 
@@ -24,6 +38,7 @@ app.include_router(usuario_router)
 app.include_router(produto_router)
 app.include_router(compra_router)
 
+
 @app.get("/")
 def read_root():
     return {"Hello": "World"}
@@ -32,4 +47,3 @@ def read_root():
 @app.get("/hello")
 def hello():
     return {"message": "hello, world!"}
-
