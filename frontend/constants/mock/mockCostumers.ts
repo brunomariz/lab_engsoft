@@ -1,10 +1,4 @@
-import React from "react";
-import SidebarLayout from "../components/SidebarLayout/SidebarLayout";
-import Table from "../components/Table/Table";
-
-type Props = {};
-
-const mockCostumers = [
+export const mockCostumers = [
   {
     nome: "Carlynn",
     cpf_cliente: "0182372022",
@@ -206,17 +200,3 @@ const mockCostumers = [
     cpf_cliente: "8868044889",
   },
 ];
-
-function Clientes({}: Props) {
-  return (
-    <SidebarLayout title="Clientes">
-      <Table
-        columnTitles={["Nome", "CPF"]}
-        items={mockCostumers}
-        title="Lista de Clientes"
-      ></Table>
-    </SidebarLayout>
-  );
-}
-
-export default Clientes;
