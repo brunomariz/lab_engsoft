@@ -183,5 +183,10 @@ class requestVenda(BaseModel):
     CPF_funcionario: str
     CPF_cliente: str
 
+class requestVenda(BaseModel):
+
+    produtos: List[ compra_venda_ProdutoSchema  ]
+    CPF_funcionario: str
+    CPF_cliente: str
 def responseVenda(code: str, status: str, message: str):
     return {"code: ": code, "status: ": status, "message: ": message}
