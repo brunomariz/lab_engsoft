@@ -19,11 +19,11 @@ def get_db():
     db.close()
 
 
-@produto_router.get("/")
+@produto_router.get("/list")
 async def get_produtos():
     return produto_controller.getProdutos(Sessionlocal())
 
-@produto_router.get("/produto/")
+@produto_router.get("/byCodigo/")
 async def get_produto_by_codigo(codigo : int):
     return produto_controller.getPrduto_byCodigo(Sessionlocal(), codigo)
 
@@ -35,9 +35,9 @@ async def criar_produto(produto : requestProduto):
 async def delete_produto(codigo: int):
     return 200 if produto_controller.remove_produto(Sessionlocal(), codigo) else 400
 
-@produto_router.patch("/updateQuantidade/")
+@produto_router.patch("/addQuantidade/")
 async def setQuantidade(request : requestQuantidadeProduto):
-    return 200 if produto_controller.setQuantidadeProduto(Sessionlocal(), request) else 400
+    return 200 if produto_controller.addQuantidadeProduto(Sessionlocal(), request) else 400
 
 @produto_router.patch("/updatePromocao/")
 async def setPromocao(request : requestQuantidadeProduto):
