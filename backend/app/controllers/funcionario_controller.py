@@ -12,14 +12,14 @@ class funcionarioController(BaseController):
     def get_funcionarios(self,db:Session):
         return json.dumps([obj.toDict() for obj in self.service.getFuncionarios(db)])
 
-    def get_funcionarioEspecifico(self,db:Session, requestfuncionario):
-        return json.dumps([self.service.getfuncionarioEspecifico(db, requestfuncionario.CPF_funcionario).toDict()])
+    def get_funcionarioEspecifico(self,db:Session, request: requestFuncionario):
+        return json.dumps([self.service.getfuncionarioEspecifico(db, request.CPF_funcionario).toDict()])
 
-    def create_funcionario(self,db:Session, requestfuncionario):
-        return json.dumps([self.service.createfuncionario(db, requestfuncionario)])
+    def create_funcionario(self,db:Session, request:requestFuncionario):
+        return json.dumps([self.service.createfuncionario(db, request)])
 
-    def remove_funcionario(self,db:Session, requestfuncionario):
-        return json.dumps([self.service.removefuncionario(db, requestfuncionario.CPF_funcionario)])
+    def remove_funcionario(self,db:Session, request:requestFuncionario):
+        return json.dumps([self.service.removefuncionario(db, request.CPF_funcionario)])
 
-    def update_funcionario(self,db:Session, requestfuncionario):
-        return json.dumps([self.service.updatefuncionario(db, requestfuncionario.CPF_funcionario, requestfuncionario.nome_funcionario)])
+    def update_funcionario(self,db:Session, request:requestFuncionario):
+        return json.dumps([self.service.updatefuncionario(db, request.CPF_funcionario, request.nome_funcionario)])
