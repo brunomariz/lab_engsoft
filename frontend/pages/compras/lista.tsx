@@ -5,12 +5,12 @@ import { mockPurchases } from "../../constants/mock/mockPurchases";
 import { mockSales } from "../../constants/mock/mockSales";
 
 interface ICompras {
-  id_compra: number;
-  quantidade_compra: number;
-  CPF_funcionario: string;
   codigo_produto: number;
-  data_compra: string;
   CNPJ_fornecedor: string;
+  quntidade_compra: number;
+  data_compra: string;
+  CPF_funcionario: string;
+  valor_por_item: number;
 }
 
 type Props = {
@@ -22,12 +22,12 @@ function lista({ data }: Props) {
     <SidebarLayout title="Compras">
       <Table
         columnTitles={[
-          "ID",
-          "Quantidade",
-          "CPF Funcionario",
           "Código",
-          "Data",
           "CNPJ Fornecedor",
+          "Quantidade",
+          "Data",
+          "CPF Funcionario",
+          "Valor",
         ]}
         items={data}
         title="Lista de Compras"

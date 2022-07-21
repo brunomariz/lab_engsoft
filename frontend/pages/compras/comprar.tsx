@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import CompraConfirmation from "../../components/CompraConfirmation/CompraConfirmation";
 import CompraForm from "../../components/Forms/CompraForm/CompraForm";
 import SidebarLayout from "../../components/SidebarLayout/SidebarLayout";
+import { postData } from "../../requests/postData";
 import { ICompraValidation } from "../../validation/compra/compraValidation";
 
 type Props = {};
@@ -23,17 +24,15 @@ function Vender({}: Props) {
           <h2 className="">Confirmar Venda</h2>
           <CompraConfirmation
             values={
-              values || { cnpj_fornecedor: "", cpf_vendedor: "", produtos: [] }
+              values || {
+                CNPJ_fornecedor: "",
+                CPF_funcionario: "",
+                produtos: [],
+              }
             }
             handleConfirm={() => {
               console.log(values);
-              fetch("http://localhost:8080/compras", {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify(values),
-              });
+              postData(values || {}, "/compra/create");
               router.push("/home");
             }}
             handleCancel={() => {

@@ -2,7 +2,10 @@ import { Form, Formik } from "formik";
 import React, { useState } from "react";
 import Select from "react-select";
 import { mockProducts } from "../../../constants/mock/mockProdutos";
-import { ICompraValidation } from "../../../validation/compra/compraValidation";
+import {
+  compraValidation,
+  ICompraValidation,
+} from "../../../validation/compra/compraValidation";
 import {
   IVendaValidation,
   vendaValidation,
@@ -14,8 +17,8 @@ type Props = { setStep: Function; setValues: Function };
 function CompraForm({ setStep, setValues }: Props) {
   const [numProducts, setnumProducts] = useState(1);
   const initialValues: ICompraValidation = {
-    cnpj_fornecedor: "",
-    cpf_vendedor: "",
+    CNPJ_fornecedor: "",
+    CPF_funcionario: "",
     produtos: [],
     // codigo_produto: 0,
     // em_promocao: false,
@@ -28,7 +31,6 @@ function CompraForm({ setStep, setValues }: Props) {
     setValues(values);
     setStep(1);
   };
-  const codigoProdutoOptions = mockProducts.map((item) => item.codigo_produto);
   return (
     <div>
       <Formik
@@ -37,48 +39,30 @@ function CompraForm({ setStep, setValues }: Props) {
           handleSubmit(values);
           actions.setSubmitting(false);
         }}
-        validationSchema={vendaValidation}
+        validationSchema={compraValidation}
       >
         <Form>
           <div className="grid grid-cols-2">
-            <Input label="CPF Vendedor" name="cpf_vendedor"></Input>
-            <Input label="CNPJ Fornecedor" name="cnpj_fornecedor"></Input>
+            <Input label="CPF Funcionario" name="CPF_funcionario"></Input>
+            <Input label="CNPJ Fornecedor" name="CNPJ_fornecedor"></Input>
           </div>
           {Array.apply(null, Array(numProducts)).map((item, index) => {
             return (
               <div className="grid grid-cols-12">
-                <div className="col-span-6">
+                <div className="col-span-5">
                   <Input
                     label="Código do Produto"
                     name={`produtos.${index}.codigo_produto`}
                   ></Input>
-                  {/* <label
-                    className="block text-gray-700 text-sm font-bold"
-                    htmlFor={`produtos.${index}.codigo_produto`}
-                  >
-                    Código do Produto
-                  </label> */}
-                  {/* <select
-                    className="p-3 rounded-lg "
-                    name={`produtos.${index}.codigo_produto`}
-                    id={`produtos.${index}.codigo_produto`}
-                  >
-                    {mockProducts.map((product) => {
-                      return (
-                        <option
-                          value={product.codigo_produto}
-                          label={product.codigo_produto}
-                        ></option>
-                      );
-                    })}
-                  </select> */}
-                  {/* <Select options={codigoProdutoOptions}></Select> */}
                 </div>
-                <div className="col-span-6">
+                <div className="col-span-5">
                   <Input
                     label="Quantidade de produtos"
-                    name={`produtos.${index}.quantidade_produto`}
+                    name={`produtos.${index}.quantidade`}
                   ></Input>
+                </div>
+                <div className="col-span-2">
+                  <Input label="Valor" name={`produtos.${index}.valor`}></Input>
                 </div>
               </div>
             );

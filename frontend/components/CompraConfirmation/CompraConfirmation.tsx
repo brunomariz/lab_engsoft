@@ -24,8 +24,8 @@ const CompraConfirmation = ({ values, handleConfirm, handleCancel }: Props) => {
             {
               mockCostumers.find(
                 (costumer) =>
-                  costumer.cpf_cliente.toString() ===
-                  values.cnpj_fornecedor.toString()
+                  costumer.CPF_cliente.toString() ===
+                  values.CNPJ_fornecedor.toString()
               )?.nome
             }
           </div>
@@ -36,8 +36,8 @@ const CompraConfirmation = ({ values, handleConfirm, handleCancel }: Props) => {
             {
               mockEmployees.find(
                 (employee) =>
-                  employee.cpf_funcionario.toString() ===
-                  values.cpf_vendedor.toString()
+                  employee.CPF_funcionario.toString() ===
+                  values.CPF_funcionario.toString()
               )?.nome_funcionario
             }
           </div>
@@ -51,13 +51,13 @@ const CompraConfirmation = ({ values, handleConfirm, handleCancel }: Props) => {
               product.codigo_produto.toString() ===
               item.codigo_produto.toString()
           );
-          const total = (product?.preco_venda || 0) * item.quantidade_produto;
+          const total = (product?.preco_venda || 0) * item.quantidade;
           totalPrice += total;
           return {
             codigo: item.codigo_produto,
             nome: product?.nome_produto,
             preco: product?.preco_venda,
-            quantidade: item.quantidade_produto,
+            quantidade: item.quantidade,
             total: total,
           };
         })}
