@@ -27,6 +27,13 @@ function Vender({}: Props) {
             }
             handleConfirm={() => {
               console.log(values);
+              fetch("http://localhost:8080/compras", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(values),
+              });
               router.push("/home");
             }}
             handleCancel={() => {
