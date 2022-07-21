@@ -4,8 +4,10 @@ from app.routes.client_router import client_router
 from app.routes.fornecedor_router import fornecedor_router
 from app.routes.funcionario_router import funcionario_router
 from app.routes.salario_router import salario_router
+from app.routes.produto_router import produto_router
 from app.config import engine
 import app.model as model
+import uvicorn
 
 app = FastAPI()
 
@@ -17,6 +19,7 @@ app.include_router(fornecedor_router)
 app.include_router(funcionario_router)
 app.include_router(salario_router)
 
+app.include_router(produto_router)
 
 
 @app.get("/")
@@ -27,3 +30,4 @@ def read_root():
 @app.get("/hello")
 def hello():
     return {"message": "hello, world!"}
+

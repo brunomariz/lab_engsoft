@@ -15,7 +15,7 @@ class clienteSchema(BaseModel):
 class requestCliente(BaseModel):
     #parameter: clienteSchema = Field(...)
     CPF_cliente: str
-    nome_cliente: Optional[str]
+    nome_cliente: str
 
 def responseCliente(code: str, status: str, message: str):
     return {"code: ": code, "status: ": status, "message: ": message}
@@ -33,8 +33,11 @@ class requestUsuario(BaseModel):
     senha:str
     eh_admin:bool=False
 
-def responseUsuario(code: str, status: str, message: str):
-    return {"code: ": code, "status: ": status, "message: ": message}
+class responseUsuario(BaseModel):
+    code: str
+    status: str
+    message: str
+    result: Optional[T]
 
 class funcionarioSchema(BaseModel):
     CPF_funcionario: str
@@ -84,11 +87,24 @@ class produtoSchema(BaseModel):
         orm_mode = True
 
 class requestProduto(BaseModel):
-    codigo_produto: int
-    nome_produto: str
-    quantidade_produto: int=0
-    em_promocao:Optional[bool]=False
-    preco_venda=float
+    nome_produto : str
+    quantidade_produto : int
+    em_promocao : bool
+    preco_venda : float
+
+class requestCodigoProduto(BaseModel):
+    codigo : int
+class requestQuantidadeProduto(BaseModel):
+    codigo : int
+    quantidade : int
+
+class requestPromocaoProduto(BaseModel):
+    codigo : int
+    emPromocao: bool
+
+class requestPrecoProduto(BaseModel):
+    codigo : int
+    preco: float
 
 def responseProduto(code: str, status: str, message: str):
     return {"code: ": code, "status: ": status, "message: ": message}

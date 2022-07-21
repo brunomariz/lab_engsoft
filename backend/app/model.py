@@ -2,17 +2,27 @@ from sqlalchemy import Column, Integer, String, VARCHAR, Date, Numeric, ForeignK
 from app.config import Base
 from sqlalchemy.orm import relationship
 from sqlalchemy.inspection import inspect
+from datetime import date
+
+def _toDict(obj):
+    aux = obj.__dict__
+    delete = []
+    for key in aux.keys():
+        val = aux[key]
+        if not isinstance(val, (str, int, bool, float, date)):
+            delete.append(key)
+    for key in delete:
+        del aux[key]
+    return aux
 
 
 class cliente(Base):
     __tablename__ = 'Cliente'
     CPF_cliente=Column(VARCHAR, primary_key=True)
     nome_cliente=Column(VARCHAR)
-    # def toDict(self):
-    #     return {"CPF_cliente": self.CPF_cliente, "nome_cliente": self.nome_cliente}
 
     def toDict(self):
-        return {column.name: self[column.name] for column in inspect(self).c}
+        return _toDict(self)
 
 class funcionario(Base):
     __tablename__ = 'Funcionario'
@@ -28,14 +38,15 @@ class funcionario(Base):
     #     return {"CPF_funcionario: ": self.CPF_funcionario, "nome_funcionario:": self.nome_funcionario, "salario_fixo:": self.salario_fixo, "data_admissao:": self.data_admissao, ""}
 
     def toDict(self):
-        return {column.name: self[column.name] for column in inspect(self).c}
+       return _toDict(self)
 
 class fornecedor(Base):
     __tablename__ = 'Fornecedor'
     CNPJ_fornecedor=Column(VARCHAR, primary_key=True)
     nome_fornecedor=Column(VARCHAR)
+
     def toDict(self):
-        return {column.name: self[column.name] for column in inspect(self).c}
+       return _toDict(self)
 
 class produto(Base):
     __tablename__ = 'Produto'
@@ -46,7 +57,7 @@ class produto(Base):
     preco_venda=Column(Numeric)
 
     def toDict(self):
-        return {column.name: self[column.name] for column in inspect(self).c}
+       return _toDict(self)
 
 class venda(Base):
     __tablename__ = 'Venda'
@@ -55,16 +66,16 @@ class venda(Base):
     valor_por_item=Column(Numeric)
     quantidade_venda=Column(Integer,default=1)
 
-    codigo_produto=Column(Integer,ForeignKey('Produto.codigo_produto', ondelete='CASCADE'), nullable=False)
-    CPF_funcionario=Column(String,ForeignKey('Funcionario.CPF_funcionario', ondelete='CASCADE'), nullable=False)
-    CPF_cliente=Column(String,ForeignKey('Cliente.CPF_cliente', ondelete='CASCADE'), nullable=False)
+    codigo_produto=Column(Integer,ForeignKey('Produto.codigo_produto'), nullable=False)
+    CPF_funcionario=Column(String,ForeignKey('Funcionario.CPF_funcionario'), nullable=False)
+    CNPJ_forcenedor=Column(String,ForeignKey('CNPJ_fornecedor'), nullable=False)
 
     #produto = relationship('Produto', backref='Venda')
     #funcionario = relationship('Funcionario', backref='Venda')
     #cliente = relationship('Cliente', backref='Venda')
 
     def toDict(self):
-        return {column.name: self[column.name] for column in inspect(self).c}
+       return _toDict(self)
 
 class compra(Base):
     __tablename__ = 'Compra'
@@ -73,16 +84,16 @@ class compra(Base):
     valor_por_item=Column(Numeric)
     quantidade_compra=Column(Integer, default=1)
 
-    codigo_produto=Column(Integer,ForeignKey('Produto.codigo_produto', ondelete='CASCADE'), nullable=False)
-    CPF_funcionario=Column(String,ForeignKey('Funcionario.CPF_funcionario', ondelete='CASCADE'), nullable=False)
-    CPF_cliente=Column(String,ForeignKey('Cliente.CPF_cliente', ondelete='CASCADE'), nullable=False)
+    codigo_produto=Column(Integer,ForeignKey('Produto.codigo_produto'), nullable=False)
+    CPF_funcionario=Column(String,ForeignKey('Funcionario.CPF_funcionario'), nullable=False)
+    CPF_cliente=Column(String,ForeignKey('Cliente.CPF_cliente'), nullable=False)
 
     #produto = relationship('Produto', backref='Compra')
     #funcionario = relationship('Funcionario', backref='Compra')
     #cliente = relationship('Cliente', backref='Compra')
 
     def toDict(self):
-        return {column.name: self[column.name] for column in inspect(self).c}
+        return _toDict(self)
 
 class salario(Base):
     __tablename__ = 'Salario'
@@ -92,12 +103,12 @@ class salario(Base):
     quantidade_salario=Column(Integer, default=1)
     banco_depositado=Column(String)
 
-    CPF_funcionario=Column(String,ForeignKey('Funcionario.CPF_funcionario', ondelete='CASCADE'), nullable=False)
+    CPF_funcionario=Column(String,ForeignKey('Funcionario.CPF_funcionario''CASCADE'), nullable=False)
 
     #funcionario = relationship('Funcionario', backref='Salario')
 
     def toDict(self):
-        return {column.name: self[column.name] for column in inspect(self).c}
+       return _toDict(self)
 
 class usuario(Base):
     __tablename__ = 'Usuario'
