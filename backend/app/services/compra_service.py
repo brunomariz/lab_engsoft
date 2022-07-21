@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from sqlalchemy.sql import select
 from app.model import compra
-from app.schemas import compraSchema
+from app.schemas import compraSchema , compra_venda_ProdutoSchema
 from app.services._base import BaseService
 from datetime import date
 
@@ -25,15 +25,18 @@ class CompraService(BaseService):
             return None
         return resultado
 
-    def createCompra(self, db:Session, Compra : compraSchema):
-        _compra= compra(data_compra = Compra.data_compra,
-                          quantidade_compra = Compra.quantidade_compra,
-                          valor_por_item = Compra.valor_por_item,
-                          codigo_produto = Compra.codigo_produto,
-                          CPF_funcionario = Compra.CPF_funcionario,
-                          CNPJ_fornecedor = Compra.CNPJ_fornecedor)
-        
+    def createCompra(self, db:Session, Compra : compraSchema, Produto : compra_venda_ProdutoSchema):
+
         try:
+
+            _compra= compra(data_compra = date.today(),
+                              quantidade_compra = Produto.quantidade,
+                              valor_por_item = Produto.valor,
+                              codigo_produto = Produto.codigo_produto,
+                              CPF_funcionario = Compra.CPF_funcionario,
+                              CNPJ_fornecedor = Compra.CNPJ_fornecedor)
+        
+
             db.add(_compra)
             db.commit()
             db.refresh(_compra)

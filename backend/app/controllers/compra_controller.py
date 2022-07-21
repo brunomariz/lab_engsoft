@@ -1,6 +1,6 @@
 from app.controllers._base import BaseController
 from sqlalchemy.orm import Session
-from app.schemas import compraSchema
+from app.schemas import requestCompra
 from app.services.compra_service import CompraService
 from datetime import date
 from app.services.produto_service import ProdutoService
@@ -28,17 +28,21 @@ class CompraController(BaseController):
             return [compra.toDict()]
         return []
 
-    def createCompra(self, db: Session, request: compraSchema):
+    def createCompra(self, db: Session, request: requestCompra):
+
         produto_service = ProdutoService()
-        try:
-            ok = produto_service.addQuantidadeProduto(db, request.codigo_produto,
-                                                    abs(request.quantidade_compra))
-            if not ok:
+        completed = []
+        for produto in request.produtos:
+            try:
+                ok = produto_service.addQuantidadeProduto(db, produto.codigo_produto,
+                                                        abs(produto.quantidade))
+                if not ok:
+                    continue
+                completed.append(self.service.createCompra(db, request, produto))
+            except Exception as e:
+                print(e)
                 return False
-            return self.service.createCompra(db, request)
-        except Exception as e:
-            print(e)
-            return False
+        return len(completed) == len(request.produtos)
 
     def remove_compra(self, db: Session, id: int):
         return self.service.removeCompra(db, id)
