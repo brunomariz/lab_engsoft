@@ -14,7 +14,7 @@ h1 {
 }
 
 h2 {
-  @apply text-2xl text-gray-800 leading-8;
+  @apply text-2xl text-gray-800 leading-8 mb-4;
 }
 
 h3 {
