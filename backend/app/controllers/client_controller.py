@@ -2,7 +2,7 @@ from app.controllers._base import BaseController
 from sqlalchemy.orm import Session
 from app.schemas import clienteSchema, requestCliente, responseCliente
 from app.services.cliente_service import ClientService
-import json
+
 
 # Session.query
 
@@ -11,10 +11,10 @@ class ClientController(BaseController):
         super().__init__(ClientService())
 
     def get_clientes(self,db:Session):
-        return json.dumps([obj.toDict() for obj in self.service.getClientes(db)])
+        return [obj.toDict() for obj in self.service.getClientes(db)]
 
     def get_clienteEspecifico(self,db:Session, requestCliente):
-        return json.dumps((self.service.getClienteEspecifico(db, requestCliente.CPF_cliente)).toDict())
+        return (self.service.getClienteEspecifico(db, requestCliente.CPF_cliente)).toDict()
         
     def create_cliente(self,db:Session, requestCliente):
         if self.service.createCliente(db, requestCliente):

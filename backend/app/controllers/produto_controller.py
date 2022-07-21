@@ -2,7 +2,7 @@ from app.controllers._base import BaseController
 from sqlalchemy.orm import Session
 from app.schemas import requestProduto, requestQuantidadeProduto, requestPromocaoProduto,requestPrecoProduto
 from app.services.produto_service import ProdutoService
-import json
+
 
 # Session.query
 
@@ -13,14 +13,14 @@ class ProdutoController(BaseController):
     def getProdutos(self,db:Session):
         produtos =  self.service.getProdutos(db)
         if produtos is not None:
-            return json.dumps([produto.toDict() for produto in produtos])
-        return json.dumps([])
+            return [produto.toDict() for produto in produtos]
+        return
     
     def getPrduto_byCodigo(self,db:Session, codigo : int):
         produto =  self.service.getProduto_byCodigo(db, codigo)
         if produto is not None:
-            return json.dumps([produto.toDict()])
-        return json.dumps([])
+            return [produto.toDict()]
+        return
     
     def createProduto(self,db:Session, request : requestProduto):
         return self.service.createProduto(db, request)
