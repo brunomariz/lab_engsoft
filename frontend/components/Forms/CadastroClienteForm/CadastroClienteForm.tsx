@@ -1,5 +1,7 @@
 import { Form, Formik } from "formik";
+import { useRouter } from "next/router";
 import React from "react";
+import { postData } from "../../../requests/postData";
 import {
   cadastroClienteValidation,
   ICadastroClienteValidation,
@@ -9,12 +11,15 @@ import Input from "../../Input/Input";
 type Props = {};
 
 function CadastroClienteForm({}: Props) {
+  const router = useRouter();
   const initialValues: ICadastroClienteValidation = {
-    cpf_cliente: "",
+    CPF_cliente: "",
     nome_cliente: "",
   };
   const handleSubmit = (values: ICadastroClienteValidation) => {
     console.log(values);
+    postData(values, "/client/create");
+    router.push("/home");
   };
   return (
     <div>
@@ -28,7 +33,7 @@ function CadastroClienteForm({}: Props) {
       >
         <Form>
           <div className="grid grid-cols-2">
-            <Input label="CPF do Cliente" name="cpf_cliente"></Input>
+            <Input label="CPF do Cliente" name="CPF_cliente"></Input>
             <Input label="Nome do Cliente" name="nome_cliente"></Input>
           </div>
 

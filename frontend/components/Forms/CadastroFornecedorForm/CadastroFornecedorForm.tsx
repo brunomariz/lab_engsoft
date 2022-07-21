@@ -1,6 +1,7 @@
 import { Form, Formik } from "formik";
 import { useRouter } from "next/router";
 import React from "react";
+import { postData } from "../../../requests/postData";
 import {
   cadastroClienteValidation,
   ICadastroClienteValidation,
@@ -16,11 +17,12 @@ type Props = {};
 function CadastroFornecedorForm({}: Props) {
   const router = useRouter();
   const initialValues: ICadastroFornecedorValidation = {
-    cnpj_fornecedor: "",
+    CNPJ_fornecedor: "",
     nome_fornecedor: "",
   };
   const handleSubmit = (values: ICadastroFornecedorValidation) => {
     console.log(values);
+    postData(values, "/fornecedor/create");
     router.push("/home");
   };
   return (
@@ -35,7 +37,7 @@ function CadastroFornecedorForm({}: Props) {
       >
         <Form>
           <div className="grid grid-cols-2">
-            <Input label="CNPJ do Fornecedor" name="cnpj_fornecedor"></Input>
+            <Input label="CNPJ do Fornecedor" name="CNPJ_fornecedor"></Input>
             <Input label="Nome do Fornecedor" name="nome_fornecedor"></Input>
           </div>
 
