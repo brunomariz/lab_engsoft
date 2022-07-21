@@ -14,7 +14,7 @@ class vendaController(BaseController):
     def getVendas(self, db: Session):
         vendas = self.service.getVendas(db)
         if vendas is not None:
-            return [compra.toDict() for compra in vendas]
+            return [venda.toDict() for venda in vendas]
         return []
 
     # def getCompra_byId(self, db: Session, id: int):
