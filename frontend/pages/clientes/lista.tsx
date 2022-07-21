@@ -1,6 +1,6 @@
 import React from "react";
-import SidebarLayout from "../components/SidebarLayout/SidebarLayout";
-import Table from "../components/Table/Table";
+import SidebarLayout from "../../components/SidebarLayout/SidebarLayout";
+import Table from "../../components/Table/Table";
 
 type Props = {};
 
@@ -207,7 +207,7 @@ const mockCostumers = [
   },
 ];
 
-function Clientes({}: Props) {
+function ListaClientes({}: Props) {
   return (
     <SidebarLayout title="Clientes">
       <Table
@@ -219,4 +219,4 @@ function Clientes({}: Props) {
   );
 }
 
-export default Clientes;
+export default ListaClientes;

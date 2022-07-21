@@ -5,12 +5,12 @@ export interface IVendaValidation {
   cpf_vendedor: string;
   produtos: {
     codigo_produto: number;
-    // nome_produto: string;
     quantidade_produto: number;
-    // em_promocao: boolean;
-    // preco_venda: number;
   }[];
 }
+// nome_produto: string;
+// em_promocao: boolean;
+// preco_venda: number;
 
 export const vendaValidation = object().shape({
   cpf_cliente: string(),
