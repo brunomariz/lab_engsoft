@@ -4,6 +4,7 @@ from app.schemas import requestCompra
 from app.services.compra_service import CompraService
 from datetime import date
 from app.services.produto_service import ProdutoService
+import pandas as pd
 # Session.query
 
 class CompraController(BaseController):
@@ -13,7 +14,15 @@ class CompraController(BaseController):
     def getCompras(self, db: Session):
         compras = self.service.getCompras(db)
         if compras is not None:
-            return [compra.toDict() for compra in compras]
+            compras = [{
+                'codigo_produto':compra.codigo_produto,
+                'CNPJ_fornecedor':compra.CNPJ_fornecedor,
+                'quntidade_compra' : compra.quantidade_compra,
+                'data_compra': compra.data_compra,
+                'CPF_funcionario' : compra.CPF_funcionario,
+                'valor_por_item': compra.valor_por_item
+            } for compra in compras]
+            return compras
         return []
 
     def getCompra_byId(self, db: Session, id: int):

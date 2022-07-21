@@ -19,7 +19,7 @@ def get_db():
 
 @venda_router.get("/")
 async def get_vendas():
-    return venda_controller.get_vendas(Sessionlocal())
+    return venda_controller.getVendas(Sessionlocal())
 
 @venda_router.get("/venda")
 async def search_venda(request:requestVenda):
