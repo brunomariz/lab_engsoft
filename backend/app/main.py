@@ -10,13 +10,11 @@ from app.routes.usuario_router import usuario_router
 from app.routes.venda_router import venda_router
 from app.config import engine
 import app.model as model
-import uvicorn
 
 app = FastAPI()
 
 model.Base.metadata.create_all(bind=engine)
 
-app.include_router(example_router)
 app.include_router(client_router)
 app.include_router(fornecedor_router)
 app.include_router(funcionario_router)
