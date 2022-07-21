@@ -3,7 +3,7 @@ import SidebarLayout from "../../components/SidebarLayout/SidebarLayout";
 import Table from "../../components/Table/Table";
 import { mockCostumers } from "../../constants/mock/mockCostumers";
 
-interface IClientes {
+export interface IClientes {
   nome_cliente: string;
   CPF_cliente: string;
 }

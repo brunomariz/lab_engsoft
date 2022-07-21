@@ -16,7 +16,7 @@ class vendaController(BaseController):
         if vendas is not None:
             vendas = [{
                 'codigo_produto':venda.codigo_produto,
-                'CNPJ_fornecedor':venda.CPF_cliente,
+                'CPF_cliente':venda.CPF_cliente,
                 'quntidade_compra' : venda.quantidade_venda,
                 'data_compra': venda.data_venda,
                 'CPF_funcionario' : venda.CPF_funcionario,

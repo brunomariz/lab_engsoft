@@ -3,6 +3,9 @@ import { mockCostumers } from "../../constants/mock/mockCostumers";
 import { mockEmployees } from "../../constants/mock/mockEmployees";
 import { mockProducts } from "../../constants/mock/mockProdutos";
 import { mockProviders } from "../../constants/mock/mockProviders";
+import { IClientes } from "../../pages/clientes/lista";
+import { IProduto } from "../../pages/produtos/lista";
+import { IVendas } from "../../pages/vendas/lista";
 import { IVendaValidation } from "../../validation/venda/vendaValidation";
 import SidebarLayout from "../SidebarLayout/SidebarLayout";
 import Table from "../Table/Table";
@@ -25,7 +28,7 @@ const VendaConfirmation = ({ values, handleConfirm, handleCancel }: Props) => {
               mockProviders.find(
                 (provider) =>
                   provider.cnpj_fornecedor.toString() ===
-                  values.cpf_cliente.toString()
+                  values.CPF_cliente.toString()
               )?.nome_fornecedor
             }
           </div>
@@ -36,8 +39,8 @@ const VendaConfirmation = ({ values, handleConfirm, handleCancel }: Props) => {
             {
               mockEmployees.find(
                 (employee) =>
-                  employee.cpf_funcionario.toString() ===
-                  values.cpf_vendedor.toString()
+                  employee.CPF_funcionario.toString() ===
+                  values.CPF_funcionario.toString()
               )?.nome_funcionario
             }
           </div>
@@ -46,18 +49,19 @@ const VendaConfirmation = ({ values, handleConfirm, handleCancel }: Props) => {
       <Table
         columnTitles={["Codigo", "Nome", "Preço", "Quantidade", "Total"]}
         items={values.produtos.map((item) => {
+          // const product = mockProducts.find(
           const product = mockProducts.find(
             (product) =>
               product.codigo_produto.toString() ===
               item.codigo_produto.toString()
           );
-          const total = (product?.preco_venda || 0) * item.quantidade_produto;
+          const total = (product?.preco_venda || 0) * item.quantidade;
           totalPrice += total;
           return {
             codigo: item.codigo_produto,
             nome: product?.nome_produto,
             preco: product?.preco_venda,
-            quantidade: item.quantidade_produto,
+            quantidade: item.quantidade,
             total: total,
           };
         })}

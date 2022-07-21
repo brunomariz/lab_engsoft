@@ -1,11 +1,12 @@
 import { object, string, ref, number, bool, array } from "yup";
 
 export interface IVendaValidation {
-  cpf_cliente: string;
-  cpf_vendedor: string;
+  CPF_cliente: string;
+  CPF_funcionario: string;
   produtos: {
     codigo_produto: string;
-    quantidade_produto: number;
+    quantidade: number;
+    valor: number;
   }[];
 }
 // nome_produto: string;
@@ -13,14 +14,16 @@ export interface IVendaValidation {
 // preco_venda: number;
 
 export const vendaValidation = object().shape({
-  cpf_cliente: string(),
-  cpf_vendedor: string().required("Campo obrigatório"),
+  CPF_cliente: string(),
+  CPF_funcionario: string().required("Campo obrigatório"),
   produtos: array()
     .of(
       object().shape({
         codigo_produto: string(), //.required("Campo obrigatório"),
         // nome_produto: string().required("Campo obrigatório"),
-        quantidade_produto: number().required("Campo obrigatório"),
+        quantidade: number().required("Campo obrigatório"),
+        valor: number().required("Campo obrigatório"),
+
         // em_promocao: bool(),
         // preco_venda: number().required("Campo obrigatório"),
       })

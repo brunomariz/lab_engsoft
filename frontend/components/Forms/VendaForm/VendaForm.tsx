@@ -13,8 +13,8 @@ type Props = { setStep: Function; setValues: Function };
 function VendaForm({ setStep, setValues }: Props) {
   const [numProducts, setnumProducts] = useState(1);
   const initialValues: IVendaValidation = {
-    cpf_cliente: "",
-    cpf_vendedor: "",
+    CPF_cliente: "",
+    CPF_funcionario: "",
     produtos: [],
     // codigo_produto: 0,
     // em_promocao: false,
@@ -27,7 +27,6 @@ function VendaForm({ setStep, setValues }: Props) {
     setValues(values);
     setStep(1);
   };
-  const codigoProdutoOptions = mockProducts.map((item) => item.codigo_produto);
   return (
     <div>
       <Formik
@@ -40,44 +39,26 @@ function VendaForm({ setStep, setValues }: Props) {
       >
         <Form>
           <div className="grid grid-cols-2">
-            <Input label="CPF Vendedor" name="cpf_vendedor"></Input>
-            <Input label="CPF Cliente" name="cpf_cliente"></Input>
+            <Input label="CPF Funcionario" name="CPF_funcionario"></Input>
+            <Input label="CPF Cliente" name="CPF_cliente"></Input>
           </div>
           {Array.apply(null, Array(numProducts)).map((item, index) => {
             return (
               <div className="grid grid-cols-12">
-                <div className="col-span-6">
+                <div className="col-span-5">
                   <Input
                     label="Código do Produto"
                     name={`produtos.${index}.codigo_produto`}
                   ></Input>
-                  {/* <label
-                    className="block text-gray-700 text-sm font-bold"
-                    htmlFor={`produtos.${index}.codigo_produto`}
-                  >
-                    Código do Produto
-                  </label> */}
-                  {/* <select
-                    className="p-3 rounded-lg "
-                    name={`produtos.${index}.codigo_produto`}
-                    id={`produtos.${index}.codigo_produto`}
-                  >
-                    {mockProducts.map((product) => {
-                      return (
-                        <option
-                          value={product.codigo_produto}
-                          label={product.codigo_produto}
-                        ></option>
-                      );
-                    })}
-                  </select> */}
-                  {/* <Select options={codigoProdutoOptions}></Select> */}
                 </div>
-                <div className="col-span-6">
+                <div className="col-span-5">
                   <Input
                     label="Quantidade de produtos"
-                    name={`produtos.${index}.quantidade_produto`}
+                    name={`produtos.${index}.quantidade`}
                   ></Input>
+                </div>
+                <div className="col-span-2">
+                  <Input label="Valor" name={`produtos.${index}.valor`}></Input>
                 </div>
               </div>
             );

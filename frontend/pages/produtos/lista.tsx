@@ -3,7 +3,7 @@ import SidebarLayout from "../../components/SidebarLayout/SidebarLayout";
 import Table from "../../components/Table/Table";
 import { mockProducts } from "../../constants/mock/mockProdutos";
 
-interface IProduto {
+export interface IProduto {
   quantidade_produto: number;
   nome_produto: string;
   em_promocao: boolean;

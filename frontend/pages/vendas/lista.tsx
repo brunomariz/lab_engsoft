@@ -3,14 +3,13 @@ import SidebarLayout from "../../components/SidebarLayout/SidebarLayout";
 import Table from "../../components/Table/Table";
 import { mockSales } from "../../constants/mock/mockSales";
 
-interface IVendas {
-  id_venda: number;
-  data_venda: string;
-  valor_por_item: number;
-  quantidade_venda: number;
+export interface IVendas {
   codigo_produto: number;
-  cpf_funcionario: string;
-  cpf_cliente: string;
+  CPF_cliente: string;
+  quntidade_compra: number;
+  data_compra: string;
+  CPF_funcionario: string;
+  valor_por_item: number;
 }
 
 type Props = {
@@ -22,13 +21,12 @@ function lista({ data }: Props) {
     <SidebarLayout title="Vendas">
       <Table
         columnTitles={[
-          "ID",
-          "Data",
-          "Valor Item",
-          "Quantidade",
           "Código",
-          "CPF Funcionario",
           "CPF Cliente",
+          "Quantidade",
+          "Data",
+          "CPF Funcionario",
+          "Valor Item",
         ]}
         // items={mockSales}
         items={data}
