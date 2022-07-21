@@ -25,7 +25,7 @@ class fornecedorService(BaseService):
 
     def createFornecedor(self, db:Session, Fornecedor:fornecedorSchema):
       try:
-        _fornecedor = fornecedor(nome_fornecedor=Fornecedor.nome_fornecedor)
+        _fornecedor = fornecedor(CNPJ_fornecedor=Fornecedor.CNPJ_fornecedor,nome_fornecedor=Fornecedor.nome_fornecedor)
         db.add(_fornecedor)
         db.commit()
         db.refresh(_fornecedor)

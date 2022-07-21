@@ -17,15 +17,15 @@ class salarioService(BaseService):
         return resultado
         # json.dumps([obj.toDict() for obj in resultado])
 
-    def getSalarioEspecifico(self, db:Session, CPF_salario:str):
-        resultado = db.query(salario).filter(salario.CPF_salario == CPF_salario).first()
+    def getSalarioEspecifico(self, db:Session, id_salario:str):
+        resultado = db.query(salario).filter(salario.id_salario == id_salario).first()
         if resultado is None:
             resultado = []
         return resultado
 
     def createSalario(self, db:Session, Salario:salarioSchema):
       try:
-        _salario = salario(nome_salario=Salario.nome_salario, salario_fixo=Salario.salario_fixo,data_admissao=Salario.data_admissao,eh_gerente=Salario.eh_gerente,comissao_venda=Salario.comissao_venda)
+        _salario = salario(id_salario=Salario.id_salario,nome_salario=Salario.nome_salario, salario_fixo=Salario.salario_fixo,data_admissao=Salario.data_admissao,eh_gerente=Salario.eh_gerente,comissao_venda=Salario.comissao_venda)
         db.add(_salario)
         db.commit()
         db.refresh(_salario)
@@ -42,14 +42,14 @@ class salarioService(BaseService):
       except:
         return False
 
-    def updateSalario(self,db:Session, id_salario, data_salario,valor_por_item,quantidade_salario,banco_depositado,CPF_funcionario):
+    def updateSalario(self,db:Session, id_salario, data_salario,valor_por_item,quantidade_salario,banco_depositado,id_funcionario):
       try:
         _salario= self.getSalarioEspecifico(db, id_salario)
         _salario.data_salario = data_salario
         _salario.valor_por_item=valor_por_item
         _salario.quantidade_salario=quantidade_salario
         _salario.banco_depositado=banco_depositado
-        _salario.CPF_funcionario=CPF_funcionario
+        _salario.id_funcionario=id_funcionario
         db.commit()
         db.refresh(_salario)
         return True
