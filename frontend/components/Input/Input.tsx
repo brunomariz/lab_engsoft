@@ -15,7 +15,7 @@ const Input = ({ name, label, ...props }: InputProps) => {
       <input
         className={`${
           meta.error && meta.touched ? "border-red-500" : ""
-        } shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline`}
+        } shadow w-full border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline`}
         {...field}
         {...props}
       />

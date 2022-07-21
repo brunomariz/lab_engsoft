@@ -41,7 +41,7 @@ function lista({ data }: Props) {
 // This gets called on every request
 export async function getServerSideProps() {
   // Fetch data from external API
-  const res = await fetch(`http://localhost:8080/vendas`);
+  const res = await fetch(`http://localhost:8080/venda`);
   const data = await res.json();
 
   // Pass data to the page via props
