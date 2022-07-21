@@ -1,11 +1,16 @@
 from sqlalchemy import Column, Integer, String, VARCHAR, Date, Numeric, ForeignKey, ColumnDefault, Boolean
 from app.config import Base
 from sqlalchemy.orm import relationship
+from sqlalchemy.inspection import inspect
+
 
 class cliente(Base):
     __tablename__ = 'Cliente'
     CPF_cliente=Column(VARCHAR, primary_key=True)
     nome_cliente=Column(VARCHAR)
+
+    def to_dict(self):
+        return {column.name: self[column.name] for column in inspect(self).c}
 
 class funcionario(Base):
     __tablename__ = 'Funcionario'
@@ -17,10 +22,15 @@ class funcionario(Base):
     comissao_venda=Column(Numeric)
     login_usuario=Column(VARCHAR)
 
+    def to_dict(self):
+        return {column.name: self[column.name] for column in inspect(self).c}
+
 class fornecedor(Base):
     __tablename__ = 'Fornecedor'
     CNPJ_fornecedor=Column(VARCHAR, primary_key=True)
     nome_fornecedor=Column(VARCHAR)
+    def to_dict(self):
+        return {column.name: self[column.name] for column in inspect(self).c}
 
 class produto(Base):
     __tablename__ = 'Produto'
@@ -29,6 +39,9 @@ class produto(Base):
     quantidade_produto=Column(Integer, default=0)
     em_promocao=Column(Boolean,default=False)
     preco_venda=Column(Numeric)
+
+    def to_dict(self):
+        return {column.name: self[column.name] for column in inspect(self).c}
 
 class venda(Base):
     __tablename__ = 'Venda'
@@ -45,6 +58,9 @@ class venda(Base):
     funcionario = relationship('Funcionario', backref='Venda')
     cliente = relationship('Cliente', backref='Venda')
 
+    def to_dict(self):
+        return {column.name: self[column.name] for column in inspect(self).c}
+
 class compra(Base):
     __tablename__ = 'Compra'
     id_compra=Column(Integer, primary_key=True)
@@ -60,6 +76,9 @@ class compra(Base):
     funcionario = relationship('Funcionario', backref='Compra')
     cliente = relationship('Cliente', backref='Compra')
 
+    def to_dict(self):
+        return {column.name: self[column.name] for column in inspect(self).c}
+
 class salario(Base):
     __tablename__ = 'Salario'
     id_salario=Column(Integer, primary_key=True)
@@ -71,6 +90,9 @@ class salario(Base):
     CPF_funcionario=Column(String,ForeignKey('Funcionario.CPF_funcionario', ondelete='CASCADE'), nullable=False)
 
     funcionario = relationship('Funcionario', backref='Salario')
+
+    def to_dict(self):
+        return {column.name: self[column.name] for column in inspect(self).c}
 
 
 
