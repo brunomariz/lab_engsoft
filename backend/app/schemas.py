@@ -161,7 +161,7 @@ def responseCompra(code: str, status: str, message: str):
     return {"code: ": code, "status: ": status, "message: ": message}
 
 class vendaSchema(BaseModel):
-    id_venda: int
+    id_venda: Optional[int]
     data_venda: date
     valor_por_item: float
     quantidade_venda: int=1
