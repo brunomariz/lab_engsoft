@@ -10,10 +10,10 @@ class salarioController(BaseController):
         super().__init__(salarioService())
 
     def get_salarios(self,db:Session):
-        return json.dumps([obj.toDict() for obj in self.service.getSalarios(db)])
+        return [obj.toDict() for obj in self.service.getSalarios(db)]
 
     def get_salarioEspecifico(self,db:Session, request: requestSalario):
-        return json.dumps([(self.service.getSalarioEspecifico(db, request.id_salario)).toDict()])
+        return [(self.service.getSalarioEspecifico(db, request.id_salario)).toDict()]
 
     def create_salario(self,db:Session, request:requestSalario):
         if self.service.createSalario(db, request):

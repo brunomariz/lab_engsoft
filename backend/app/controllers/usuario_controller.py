@@ -9,10 +9,10 @@ class usuarioController(BaseController):
         super().__init__(usuarioService())
 
     def get_usuarios(self,db:Session):
-        return json.dumps([obj.toDict() for obj in self.service.getUsuarios(db)])
+        return [obj.toDict() for obj in self.service.getUsuarios(db)]
 
     def get_usuarioEspecifico(self,db:Session, request:requestUsuario):
-        return json.dumps([(self.service.getUsuarioEspecifico(db, request.login)).toDict()])
+        return [(self.service.getUsuarioEspecifico(db, request.login)).toDict()]
 
     def create_usuario(self,db:Session, request:requestUsuario):
         if self.service.createUsuario(db, request):
@@ -31,6 +31,6 @@ class usuarioController(BaseController):
     
     def verify_usuario(self,db:Session, request:requestUsuario):
         if self.service.verifyUsuario(db, request.login, request.senha):
-            return json.dumps([{"Usuario: ": f"{request.login}"}])
+            return [{"Usuario: ": f"{request.login}"}]
             # responseUsuario("200","Ok","Usuario permitido")
         return responseUsuario("400","Erro","Erro de autorizacao")

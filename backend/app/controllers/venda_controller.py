@@ -11,10 +11,10 @@ class vendaController(BaseController):
         super().__init__(vendaService())
 
     def get_vendas(self,db:Session):
-        return json.dumps([obj.toDict() for obj in self.service.getvendas(db)])
+        return [obj.toDict() for obj in self.service.getvendas(db)]
 
     def get_vendaEspecifico(self,db:Session, request: requestVenda):
-        return json.dumps([(self.service.getvendaEspecifico(db, request.id_venda)).toDict()])
+        return [(self.service.getvendaEspecifico(db, request.id_venda)).toDict()]
 
     def create_venda(self,db:Session, request:requestVenda):
         if self.service.createVenda(db, request):
