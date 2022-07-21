@@ -62,7 +62,7 @@ class venda(Base):
 
     codigo_produto=Column(Integer,ForeignKey('Produto.codigo_produto'),primary_key=True, nullable=False)
     CPF_funcionario=Column(String,ForeignKey('Funcionario.CPF_funcionario'),primary_key=True, nullable=False)
-    CPF_cliente=Column(String,ForeignKey('CPF_cliente'),primary_key=True, nullable=False)
+    CPF_cliente=Column(String,ForeignKey('Cliente.CPF_cliente'),primary_key=True, nullable=False)
 
 
     def toDict(self):
