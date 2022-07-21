@@ -12,7 +12,6 @@ CREATE TABLE Funcionario(
 	CPF_funcionario VARCHAR(11),
 	nome_funcionario VARCHAR(30) NOT NULL,
 	salario_fixo NUMERIC(30) NOT NULL,
-	data_admissao DATE NOT NULL,
 	eh_gerente BOOLEAN DEFAULT false,
 	comissao_venda real default 0.1,
 

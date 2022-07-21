@@ -43,11 +43,10 @@ class funcionarioSchema(BaseModel):
     CPF_funcionario: str
     nome_funcionario: Optional[str]
     salario_fixo: float
-    data_admissao: date
     eh_gerente: Optional[bool]=False
     comissao_venda:Optional[float]=0.1
-
     login_usuario:str
+
     class config:
         orm_mode = True
 
@@ -55,9 +54,9 @@ class requestFuncionario(BaseModel):
     CPF_funcionario: str
     nome_funcionario: Optional[str]
     salario_fixo: float
-    data_admissao: date
     eh_gerente: Optional[bool]=False
     comissao_venda:Optional[float]=0.1
+    login_usuario:str
 
 def responseFuncionario(code: str, status: str, message: str):
     return {"code: ": code, "status: ": status, "message: ": message}
