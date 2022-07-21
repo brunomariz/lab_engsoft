@@ -12,7 +12,7 @@ class fornecedorService(BaseService):
     def __init__(self) -> None:
         super().__init__()
 
-    def getFornecedors(self, db:Session, skip:int=0, limit:int=100):
+    def getFornecedores(self, db:Session, skip:int=0, limit:int=100):
         resultado=db.query(fornecedor).offset(skip).limit(limit).all()
         return resultado
         # json.dumps([obj.toDict() for obj in resultado])
@@ -23,8 +23,8 @@ class fornecedorService(BaseService):
             resultado = []
         return resultado
 
-    def createFornecedor(self, db:Session, fornecedor:fornecedorSchema):
-        _fornecedor = fornecedor(nome_fornecedor=fornecedor.nome_fornecedor)
+    def createFornecedor(self, db:Session, Fornecedor:fornecedorSchema):
+        _fornecedor = fornecedor(nome_fornecedor=Fornecedor.nome_fornecedor)
         db.add(_fornecedor)
         db.commit()
         db.refresh(_fornecedor)

@@ -24,7 +24,7 @@ class funcionarioService(BaseService):
         return resultado
 
     def createFuncionario(self, db:Session, Funcionario:funcionarioSchema):
-        _Funcionario = Funcionario(nome_funcionario=Funcionario.nome_funcionario, salario_fixo=Funcionario.salario_fixo,data_admissao=Funcionario.data_admissao,eh_gerente=Funcionario.eh_gerente,comissao_venda=Funcionario.comissao_venda)
+        _Funcionario = funcionario(nome_funcionario=Funcionario.nome_funcionario, salario_fixo=Funcionario.salario_fixo,data_admissao=Funcionario.data_admissao,eh_gerente=Funcionario.eh_gerente,comissao_venda=Funcionario.comissao_venda)
         db.add(_Funcionario)
         db.commit()
         db.refresh(_Funcionario)
