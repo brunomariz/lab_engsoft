@@ -3,7 +3,7 @@ from app.config import Sessionlocal
 from sqlalchemy.orm import Session
 from app.schemas import clienteSchema, requestCliente, responseCliente
 from app.controllers.client_controller import ClientController
-from app.clienteCRUD import ClientService
+from app.services.cliente_service import ClientService
 
 
 client_router = APIRouter(prefix="/client")
@@ -34,6 +34,6 @@ async def create_cliente(request:requestCliente):
 async def remove_cliente(request:requestCliente):
     return client_controller.remove_cliente(Sessionlocal(), request)
 
-@client_router.post("/update")
+@client_router.patch("/update")
 async def update_cliente(request:requestCliente):
     return client_controller.update_cliente(Sessionlocal(), request)

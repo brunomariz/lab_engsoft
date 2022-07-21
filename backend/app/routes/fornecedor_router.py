@@ -22,7 +22,7 @@ def get_db():
 async def get_fornecedores():
     return fornecedor_controller.get_fornecedores(Sessionlocal())
 
-@fornecedor_router.get("/fornecedor")
+@fornecedor_router.post("/fornecedor")
 async def search_fornecedor(request:requestFornecedor):
     return fornecedor_controller.get_fornecedorEspecifico(Sessionlocal(),request)
 
@@ -34,10 +34,6 @@ async def create_fornecedor(request:requestFornecedor):
 async def delete_fornecedor(request:requestFornecedor):
     return fornecedor_controller.remove_fornecedor(Sessionlocal(), request)
 
-@fornecedor_router.post("/update")
+@fornecedor_router.patch("/update")
 async def update_fornecedor(request:requestFornecedor):
     return fornecedor_controller.update_fornecedor(Sessionlocal(), request)
-
-# @fornecedor_router.post("/create")
-# async def create_fornecedore(request:requestfornecedoreget_db)):
-#     return fornecedor_controller.create_fornecedore(db, request)

@@ -1,7 +1,7 @@
 from app.controllers._base import BaseController
 from sqlalchemy.orm import Session
 from app.schemas import clienteSchema, requestCliente, responseCliente
-from app.clienteCRUD import ClientService
+from app.services.cliente_service import ClientService
 import json
 
 # Session.query
