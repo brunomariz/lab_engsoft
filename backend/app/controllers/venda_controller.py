@@ -38,8 +38,8 @@ class vendaController(BaseController):
     #     return []
 
 
-    def get_vendaEspecifico(self,db:Session, request: requestVenda):
-        return [(self.service.getVendaEspecifico(db, request.id_venda)).toDict()]
+    # def get_vendaEspecifico(self,db:Session, request: requestVenda):
+    #     return [(self.service.getVendaEspecifico(db, request.id_venda)).toDict()]
 
     def create_venda(self,db:Session, request:requestVenda):
         produto_service = ProdutoService()

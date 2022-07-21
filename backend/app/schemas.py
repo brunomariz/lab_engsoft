@@ -161,7 +161,7 @@ def responseCompra(code: str, status: str, message: str):
     return {"code: ": code, "status: ": status, "message: ": message}
 
 class vendaSchema(BaseModel):
-    id_venda: Optional[int]
+
     data_venda: date
     valor_por_item: float
     quantidade_venda: int=1
@@ -173,20 +173,12 @@ class vendaSchema(BaseModel):
     class config:
         orm_mode = True
 
-class requestVenda(BaseModel):
-    id_venda: int
-    data_venda: date
-    valor_por_item:float
-    quantidade_venda: int=1
-
-    codigo_produto: int
-    CPF_funcionario: str
-    CPF_cliente: str
 
 class requestVenda(BaseModel):
 
     produtos: List[ compra_venda_ProdutoSchema  ]
     CPF_funcionario: str
     CPF_cliente: str
+
 def responseVenda(code: str, status: str, message: str):
     return {"code: ": code, "status: ": status, "message: ": message}

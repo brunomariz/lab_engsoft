@@ -1,12 +1,13 @@
 from datetime import date
 from sqlalchemy.orm import Session
-from app.schemas import vendaSchema, compra_venda_ProdutoSchema
+from app.schemas import vendaSchema, compra_venda_ProdutoSchema, requestVenda
 import pandas as pd
 import json 
 from app.services._base import BaseService
 from app.config import Sessionlocal
 from app.model import venda
 from app.config import engine
+from datetime import date
 
 #from app.config import conn
 
@@ -25,20 +26,21 @@ class vendaService(BaseService):
             resultado = []
         return resultado
 
-    def createVenda(self, db:Session, Venda:vendaSchema, Produto:compra_venda_ProdutoSchema):
+    def createVenda(self, db:Session, Venda:requestVenda, Produto:compra_venda_ProdutoSchema):
       try:
-        _venda = venda(data_compra = date.today(),
-                              quantidade_compra = Produto.quantidade,
+        _venda = venda(data_venda = date.today(),
+                              quantidade_venda = Produto.quantidade,
                               valor_por_item = Produto.valor,
                               codigo_produto = Produto.codigo_produto,
                               CPF_funcionario = Venda.CPF_funcionario,
-                              CNPJ_fornecedor = Venda.CPF_cliente)
+                              CPF_cliente = Venda.CPF_cliente)
         db.add(_venda)
         db.commit()
         db.refresh(_venda)
         return True
-      except:
-        return False
+      except Exception as e:
+          print(e)
+          return False
 
     def removeVenda(self,db:Session, id_venda:str):
       try:
