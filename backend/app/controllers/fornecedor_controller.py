@@ -10,10 +10,10 @@ class fornecedorController(BaseController):
         super().__init__(fornecedorService())
 
     def get_fornecedores(self,db:Session):
-        return json.dumps([obj.toDict() for obj in self.service.getFornecedores(db)])
+        return [obj.toDict() for obj in self.service.getFornecedores(db)]
 
     def get_fornecedorEspecifico(self,db:Session, request:requestFornecedor):
-        return json.dumps([(self.service.getFornecedorEspecifico(db, request.CNPJ_fornecedor)).toDict()])
+        return [(self.service.getFornecedorEspecifico(db, request.CNPJ_fornecedor)).toDict()]
 
     def create_fornecedor(self,db:Session, request:requestFornecedor):
         if self.service.createFornecedor(db, request):
@@ -29,9 +29,3 @@ class fornecedorController(BaseController):
         if self.service.updateFornecedor(db, request.CNPJ_fornecedor, request.nome_fornecedor):
             return responseFornecedor("200","Ok","Fornecedor atualizado com sucesso")
         return responseFornecedor("400","Erro","Erro na atualizacao de fornecedor")
-from app.controllers._base import BaseController
-from sqlalchemy.orm import Session
-from app.schemas import usuarioSchema, requestUsuario, responseUsuario
-from app.services.usuario_service import usuarioService
-import json
-# Session.query
