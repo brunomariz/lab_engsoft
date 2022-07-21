@@ -5,6 +5,7 @@ from app.routes.fornecedor_router import fornecedor_router
 from app.routes.funcionario_router import funcionario_router
 from app.routes.salario_router import salario_router
 from app.routes.produto_router import produto_router
+from app.routes.compra_router import compra_router
 from app.routes.usuario_router import usuario_router
 from app.routes.venda_router import venda_router
 from app.config import engine
@@ -23,7 +24,7 @@ app.include_router(salario_router)
 app.include_router(venda_router)
 app.include_router(usuario_router)
 app.include_router(produto_router)
-
+app.include_router(compra_router)
 
 @app.get("/")
 def read_root():

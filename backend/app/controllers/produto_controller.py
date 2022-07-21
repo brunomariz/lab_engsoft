@@ -17,7 +17,7 @@ class ProdutoController(BaseController):
         return json.dumps([])
     
     def getPrduto_byCodigo(self,db:Session, codigo : int):
-        produto =  self.service.getprodutoEspecifico(db, codigo)
+        produto =  self.service.getProduto_byCodigo(db, codigo)
         if produto is not None:
             return json.dumps([produto.toDict()])
         return json.dumps([])

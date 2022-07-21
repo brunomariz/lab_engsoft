@@ -1,7 +1,5 @@
 from sqlalchemy import Column, Integer, String, VARCHAR, Date, Numeric, ForeignKey, ColumnDefault, Boolean
 from app.config import Base
-from sqlalchemy.orm import relationship
-from sqlalchemy.inspection import inspect
 from datetime import date
 
 def _toDict(obj):
@@ -33,9 +31,7 @@ class funcionario(Base):
     eh_gerente=Column(Boolean)
     comissao_venda=Column(Numeric)
     login_usuario=Column(VARCHAR)
-    
-    # def toDict(self):
-    #     return {"CPF_funcionario: ": self.CPF_funcionario, "nome_funcionario:": self.nome_funcionario, "salario_fixo:": self.salario_fixo, "data_admissao:": self.data_admissao, ""}
+
 
     def toDict(self):
        return _toDict(self)
@@ -70,9 +66,6 @@ class venda(Base):
     CPF_funcionario=Column(String,ForeignKey('Funcionario.CPF_funcionario'), nullable=False)
     CNPJ_forcenedor=Column(String,ForeignKey('CNPJ_fornecedor'), nullable=False)
 
-    #produto = relationship('Produto', backref='Venda')
-    #funcionario = relationship('Funcionario', backref='Venda')
-    #cliente = relationship('Cliente', backref='Venda')
 
     def toDict(self):
        return _toDict(self)
@@ -84,13 +77,9 @@ class compra(Base):
     valor_por_item=Column(Numeric)
     quantidade_compra=Column(Integer, default=1)
 
-    codigo_produto=Column(Integer,ForeignKey('Produto.codigo_produto'), nullable=False)
-    CPF_funcionario=Column(String,ForeignKey('Funcionario.CPF_funcionario'), nullable=False)
-    CPF_cliente=Column(String,ForeignKey('Cliente.CPF_cliente'), nullable=False)
-
-    #produto = relationship('Produto', backref='Compra')
-    #funcionario = relationship('Funcionario', backref='Compra')
-    #cliente = relationship('Cliente', backref='Compra')
+    codigo_produto=Column(Integer,ForeignKey('Produto.codigo_produto', ondelete='CASCADE'), nullable=False)
+    CPF_funcionario=Column(String,ForeignKey('Funcionario.CPF_funcionario', ondelete='CASCADE'), nullable=False)
+    CNPJ_fornecedor=Column(String,ForeignKey('Fornecedor.CNPJ_fornecedor', ondelete='CASCADE'), nullable=False)
 
     def toDict(self):
         return _toDict(self)
@@ -105,7 +94,6 @@ class salario(Base):
 
     CPF_funcionario=Column(String,ForeignKey('Funcionario.CPF_funcionario'), nullable=False)
 
-    #funcionario = relationship('Funcionario', backref='Salario')
 
     def toDict(self):
        return _toDict(self)
@@ -116,5 +104,3 @@ class usuario(Base):
     senha=Column(VARCHAR)
     eh_admin=Column(Boolean)
 
-    def toDict(self):
-        return {column.name: self[column.name] for column in inspect(self).c}
