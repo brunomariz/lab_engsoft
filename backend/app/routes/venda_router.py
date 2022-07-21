@@ -30,7 +30,7 @@ async def create_venda(request:requestVenda):
     return venda_controller.create_venda(Sessionlocal(), request)
 
 @venda_router.post("/remove")
-async def create_venda(request:requestVenda):
+async def remove_venda(request:requestVenda):
     return venda_controller.remove_venda(Sessionlocal(), request)
 
 @venda_router.post("/update")

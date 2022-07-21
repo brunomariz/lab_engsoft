@@ -30,7 +30,7 @@ async def create_funcionario(request:requestFuncionario):
     return funcionario_controller.create_funcionario(Sessionlocal(), request)
 
 @funcionario_router.post("/remove")
-async def create_funcionario(request:requestFuncionario):
+async def delete_funcionario(request:requestFuncionario):
     return funcionario_controller.remove_funcionario(Sessionlocal(), request)
 
 @funcionario_router.post("/update")

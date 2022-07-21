@@ -31,7 +31,7 @@ async def create_fornecedor(request:requestFornecedor):
     return fornecedor_controller.create_fornecedor(Sessionlocal(), request)
 
 @fornecedor_router.post("/remove")
-async def create_fornecedor(request:requestFornecedor):
+async def delete_fornecedor(request:requestFornecedor):
     return fornecedor_controller.remove_fornecedor(Sessionlocal(), request)
 
 @fornecedor_router.post("/update")

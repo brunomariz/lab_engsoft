@@ -30,7 +30,7 @@ async def create_salario(request:requestSalario):
     return salario_controller.create_salario(Sessionlocal(), request)
 
 @salario_router.post("/remove")
-async def create_salario(request:requestSalario):
+async def remove_salario(request:requestSalario):
     return salario_controller.remove_salario(Sessionlocal(), request)
 
 @salario_router.post("/update")
