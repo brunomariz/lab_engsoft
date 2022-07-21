@@ -2,7 +2,7 @@ from app.controllers._base import BaseController
 from sqlalchemy.orm import Session
 from app.schemas import vendaSchema, requestVenda, responseVenda
 from app.services.venda_service import vendaService
-import app.services.produto_service
+from app.services.produto_service import ProdutoService
 import json
 # Session.query
 
@@ -18,12 +18,13 @@ class vendaController(BaseController):
 
     def create_venda(self,db:Session, request:requestVenda):
         if self.service.createVenda(db, request):
-
+            ProdutoService.setQuantidadeProduto(db=db,codigo=request.codigo_produto,quantidade=-int(request.quantidade_venda))
             return responseVenda("200","Ok","Venda criado com sucesso")
         return responseVenda("400","Erro","Erro na criacao de venda")
 
     def remove_venda(self,db:Session, request:requestVenda):
         if self.service.removevenda(db, request.id_venda):
+            ProdutoService.setQuantidadeProduto(db=db,codigo=request.codigo_produto,quantidade=int(request.quantidade_venda))
             return responseVenda("200","Ok","Venda removido com sucesso")
         return responseVenda("400","Erro","Erro na remocao de venda")
 
