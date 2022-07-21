@@ -8,6 +8,8 @@ class cliente(Base):
     __tablename__ = 'Cliente'
     CPF_cliente=Column(VARCHAR, primary_key=True)
     nome_cliente=Column(VARCHAR)
+    def toDict(self):
+        return {"CPF_cliente": self.CPF_cliente, "nome_cliente": self.nome_cliente}
 
     def to_dict(self):
         return {column.name: self[column.name] for column in inspect(self).c}
@@ -21,6 +23,9 @@ class funcionario(Base):
     eh_gerente=Column(Boolean)
     comissao_venda=Column(Numeric)
     login_usuario=Column(VARCHAR)
+    
+    # def toDict(self):
+    #     return {"CPF_funcionario: ": self.CPF_funcionario, "nome_funcionario:": self.nome_funcionario, "salario_fixo:": self.salario_fixo, "data_admissao:": self.data_admissao, ""}
 
     def to_dict(self):
         return {column.name: self[column.name] for column in inspect(self).c}
@@ -54,9 +59,9 @@ class venda(Base):
     CPF_funcionario=Column(String,ForeignKey('Funcionario.CPF_funcionario', ondelete='CASCADE'), nullable=False)
     CPF_cliente=Column(String,ForeignKey('Cliente.CPF_cliente', ondelete='CASCADE'), nullable=False)
 
-    produto = relationship('Produto', backref='Venda')
-    funcionario = relationship('Funcionario', backref='Venda')
-    cliente = relationship('Cliente', backref='Venda')
+    #produto = relationship('Produto', backref='Venda')
+    #funcionario = relationship('Funcionario', backref='Venda')
+    #cliente = relationship('Cliente', backref='Venda')
 
     def to_dict(self):
         return {column.name: self[column.name] for column in inspect(self).c}
@@ -72,9 +77,9 @@ class compra(Base):
     CPF_funcionario=Column(String,ForeignKey('Funcionario.CPF_funcionario', ondelete='CASCADE'), nullable=False)
     CPF_cliente=Column(String,ForeignKey('Cliente.CPF_cliente', ondelete='CASCADE'), nullable=False)
 
-    produto = relationship('Produto', backref='Compra')
-    funcionario = relationship('Funcionario', backref='Compra')
-    cliente = relationship('Cliente', backref='Compra')
+    #produto = relationship('Produto', backref='Compra')
+    #funcionario = relationship('Funcionario', backref='Compra')
+    #cliente = relationship('Cliente', backref='Compra')
 
     def to_dict(self):
         return {column.name: self[column.name] for column in inspect(self).c}
@@ -89,7 +94,7 @@ class salario(Base):
 
     CPF_funcionario=Column(String,ForeignKey('Funcionario.CPF_funcionario', ondelete='CASCADE'), nullable=False)
 
-    funcionario = relationship('Funcionario', backref='Salario')
+    #funcionario = relationship('Funcionario', backref='Salario')
 
     def to_dict(self):
         return {column.name: self[column.name] for column in inspect(self).c}

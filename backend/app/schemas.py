@@ -13,7 +13,9 @@ class clienteSchema(BaseModel):
         orm_mode = True
 
 class requestCliente(BaseModel):
-    parameter: clienteSchema = Field(...)
+    #parameter: clienteSchema = Field(...)
+    CPF_cliente: str
+    nome_cliente: Optional[str]
 
 class responseCliente(GenericModel, Generic[T]):
     code: str
