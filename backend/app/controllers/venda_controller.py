@@ -14,19 +14,27 @@ class vendaController(BaseController):
     def getVendas(self, db: Session):
         vendas = self.service.getVendas(db)
         if vendas is not None:
-            return [venda.toDict() for venda in vendas]
+            vendas = [{
+                'codigo_produto':venda.codigo_produto,
+                'CNPJ_fornecedor':venda.CPF_cliente,
+                'quntidade_compra' : venda.quantidade_venda,
+                'data_compra': venda.data_venda,
+                'CPF_funcionario' : venda.CPF_funcionario,
+                'valor_por_item': venda.valor_por_item
+            } for venda in vendas]
+            return vendas
         return []
 
     # def getCompra_byId(self, db: Session, id: int):
-    #     compra = self.service.getCompra_byId(db, id)
-    #     if compra is not None:
-    #         return [compra.toDict()]
+    #     venda = self.service.getCompra_byId(db, id)
+    #     if venda is not None:
+    #         return [venda.toDict()]
     #     return []
 
     # def getCompras_byData(self, db: Session, data: date):
-    #     compra = self.service.getCompra_byData(db, data)
-    #     if compra is not None:
-    #         return [compra.toDict()]
+    #     venda = self.service.getCompra_byData(db, data)
+    #     if venda is not None:
+    #         return [venda.toDict()]
     #     return []
 
 
