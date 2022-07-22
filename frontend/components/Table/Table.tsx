@@ -16,14 +16,19 @@ function Table({ items, title, columnTitles }: Props) {
           gridTemplateColumns: `repeat(${columnTitles.length}, 1fr)`,
         }}
       >
-        {columnTitles.map((columnTitle) => {
-          return <div className="p-1">{columnTitle}</div>;
+        {columnTitles.map((columnTitle, index) => {
+          return (
+            <div className="p-1" key={index}>
+              {columnTitle}
+            </div>
+          );
         })}
       </div>
       {items.length == 0 ? <h3 className="p-1">Sem dados</h3> : null}
       {items.map((item, index) => {
         return (
           <div
+            key={index}
             className={`grid p-1 ${index % 2 == 1 ? "bg-gray-200" : ""}`}
             style={{
               gridTemplateColumns: `repeat(${
@@ -33,7 +38,11 @@ function Table({ items, title, columnTitles }: Props) {
           >
             {Object.entries(item).map((entry, index) => {
               const [key, value] = entry;
-              return <div className="p-1">{value}</div>;
+              return (
+                <div className="p-1" key={index}>
+                  {value}
+                </div>
+              );
             })}
           </div>
         );

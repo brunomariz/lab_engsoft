@@ -10,12 +10,12 @@ import { IProduto } from "../produtos/lista";
 import { IVendas } from "./lista";
 
 type Props = {
-  vendaData: IVendas[];
-  productData: IProduto[];
-  clientData: IClientes[];
+  // vendaData: IVendas[];
+  // productData: IProduto[];
+  // clientData: IClientes[];
 };
 
-function Vender({ vendaData, productData, clientData }: Props) {
+function Vender({}: Props) {
   const [step, setStep] = useState(0);
   const [values, setValues] = useState<IVendaValidation>();
   const router = useRouter();
@@ -50,19 +50,19 @@ function Vender({ vendaData, productData, clientData }: Props) {
 }
 
 // This gets called on every request
-export async function getServerSideProps() {
-  // Fetch data from external API
-  const vendaRes = await fetch(`http://localhost:8080/venda`);
-  const vendaData = await vendaRes.json();
+// export async function getServerSideProps() {
+//   // Fetch data from external API
+//   const vendaRes = await fetch(`http://localhost:8080/venda`);
+//   const vendaData = await vendaRes.json();
 
-  const productRes = await fetch(`http://localhost:8080/produto/list`);
-  const productData = await productRes.json();
+//   const productRes = await fetch(`http://localhost:8080/produto/list`);
+//   const productData = await productRes.json();
 
-  const clientRes = await fetch(`http://localhost:8080/client`);
-  const clientData = await clientRes.json();
+//   const clientRes = await fetch(`http://localhost:8080/client`);
+//   const clientData = await clientRes.json();
 
-  // Pass data to the page via props
-  return { props: { vendaData, productData, clientData } };
-}
+//   // Pass data to the page via props
+//   return { props: { vendaData, productData, clientData } };
+// }
 
 export default Vender;

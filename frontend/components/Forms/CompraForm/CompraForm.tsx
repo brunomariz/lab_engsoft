@@ -48,14 +48,14 @@ function CompraForm({ setStep, setValues }: Props) {
           </div>
           {Array.apply(null, Array(numProducts)).map((item, index) => {
             return (
-              <div className="grid grid-cols-12">
+              <div className="grid grid-cols-12" key={index * 2 + 1}>
                 <div className="col-span-5">
                   <Input
                     label="Código do Produto"
                     name={`produtos.${index}.codigo_produto`}
                   ></Input>
                 </div>
-                <div className="col-span-5">
+                <div className="col-span-5" key={index * 2}>
                   <Input
                     label="Quantidade de produtos"
                     name={`produtos.${index}.quantidade`}

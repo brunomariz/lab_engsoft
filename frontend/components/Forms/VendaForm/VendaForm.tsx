@@ -44,7 +44,7 @@ function VendaForm({ setStep, setValues }: Props) {
           </div>
           {Array.apply(null, Array(numProducts)).map((item, index) => {
             return (
-              <div className="grid grid-cols-12">
+              <div className="grid grid-cols-12" key={index}>
                 <div className="col-span-5">
                   <Input
                     label="Código do Produto"
